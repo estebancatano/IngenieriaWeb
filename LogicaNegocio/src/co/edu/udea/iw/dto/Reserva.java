@@ -16,13 +16,9 @@ public class Reserva {
 	 */
 	private Long codigo;
 	/**
-	 * Codigo del dispositivo que se quiere reservar
+	 * Ejemplar que se quiere reservar
 	 */
-	private Long codigoEjemplarDispositivo;
-	/**
-	 * Consecutivo del ejemplar dentro de los existentes en el dispositivo
-	 */
-	private Integer consecutivoEjemplar;
+	private Ejemplar ejemplar;
 	/**
 	 * Nombre de usuario del investigador que hace la reserva
 	 */
@@ -63,26 +59,18 @@ public class Reserva {
 	/**
 	 * @return the codigoEjemplarDispositivo
 	 */
-	public Long getCodigoEjemplarDispositivo() {
-		return codigoEjemplarDispositivo;
+	
+	/**
+	 * @return the ejemplar
+	 */
+	public Ejemplar getEjemplar() {
+		return ejemplar;
 	}
 	/**
-	 * @param codigoEjemplarDispositivo the codigoEjemplarDispositivo to set
+	 * @param ejemplar the ejemplar to set
 	 */
-	public void setCodigoEjemplarDispositivo(Long codigoEjemplarDispositivo) {
-		this.codigoEjemplarDispositivo = codigoEjemplarDispositivo;
-	}
-	/**
-	 * @return the consecutivoEjemplar
-	 */
-	public Integer getConsecutivoEjemplar() {
-		return consecutivoEjemplar;
-	}
-	/**
-	 * @param consecutivoEjemplar the consecutivoEjemplar to set
-	 */
-	public void setConsecutivoEjemplar(Integer consecutivoEjemplar) {
-		this.consecutivoEjemplar = consecutivoEjemplar;
+	public void setEjemplar(Ejemplar ejemplar) {
+		this.ejemplar = ejemplar;
 	}
 	/**
 	 * @return the investigador

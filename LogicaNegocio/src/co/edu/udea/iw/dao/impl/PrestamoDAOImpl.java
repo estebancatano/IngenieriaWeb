@@ -14,7 +14,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import co.edu.udea.iw.dao.PrestamoDAO;
 import co.edu.udea.iw.dto.Prestamo;
-import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.exception.IWDaoException;
 
 /**

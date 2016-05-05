@@ -8,12 +8,11 @@
             <column name="codigo" precision="15"/>
             <generator class="assigned"></generator>
         </id>
-        <property name="codigoEjemplarDispositivo" type="java.lang.Long">
-            <column name="codigoEjemplarDispositivo" not-null="true" precision="15"/>
-        </property>
-        <property name="consecutivoEjemplar" type="java.lang.Integer">
-            <column name="consecutivoEjemplar" not-null="true" precision="2"/>
-        </property>
+        <many-to-one name="ejemplar" class="co.edu.udea.iw.dto.Ejemplar"
+        		fetch="join">
+        	<column name="codigoDispositivo" not-null="true" precision="15"/>
+        	<column name="consecutivo" not-null="true" precision="2"></column>
+        </many-to-one>
         <many-to-one name="investigador" class="co.edu.udea.iw.dto.Usuario"
         		fetch="join">
             <column name="investigador" not-null="true" length="30"/>

@@ -49,7 +49,7 @@
 	</bean>
 	
 	<bean id="usuarioHasRolDao" class="co.edu.udea.iw.dao.impl.UsuarioHasRolDAOImpl">
-	    <property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
 	<bean id="usuarioDao" class="co.edu.udea.iw.dao.impl.UsuarioDAOImpl">
