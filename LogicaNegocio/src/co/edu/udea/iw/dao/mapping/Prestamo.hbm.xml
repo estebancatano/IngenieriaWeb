@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/05/2016 09:11:04 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Prestamo" table="Prestamo">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo" precision="15"/>
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="codigoReserva" class="co.edu.udea.iw.dto.Reserva"
+        		fetch="join">
+            <column name="codigoReserva" not-null="true" precision="15"/>
+        </many-to-one>
+        <property name="fechaEntrega" type="java.util.Date">
+            <column name="fechaEntrega" not-null="true"/>
+        </property>
+        <many-to-one name="administradorEntrega" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
+            <column name="administradorEntrega" not-null="true" length="30"/>
+        </many-to-one>
+        <property name="fechaMaximaDevolucion" type="java.util.Date">
+            <column name="fechaMaximaDevolucion" not-null="true"/>
+        </property>
+        <property name="fechaDevolucion" type="java.util.Date">
+            <column name="fechaDevolucion" not-null="false"/>
+        </property>
+        <many-to-one name="administradorDevolucion" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
+            <column name="administradorDevolucion" not-null="false" length="30"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

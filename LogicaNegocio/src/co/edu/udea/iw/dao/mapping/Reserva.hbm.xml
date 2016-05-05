@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/05/2016 09:12:24 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Reserva" table="Reserva">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" precision="15"/>
+            <generator class="assigned"></generator>
+        </id>
+        <property name="codigoEjemplarDispositivo" type="java.lang.Long">
+            <column name="codigoEjemplarDispositivo" not-null="true" precision="15"/>
+        </property>
+        <property name="consecutivoEjemplar" type="java.lang.Integer">
+            <column name="consecutivoEjemplar" not-null="true" precision="2"/>
+        </property>
+        <many-to-one name="investigador" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
+            <column name="investigador" not-null="true" length="30"/>
+        </many-to-one>
+        <property name="fechaSolicitud" type="java.util.Date">
+            <column name="fechaSolicitud" not-null="true"/>
+        </property>
+        <property name="fechaPrestamo" type="java.util.Date">
+            <column name="fechaPrestamo" not-null="true"/>
+        </property>
+        <property name="cantidadHoras" type="java.lang.Integer">
+            <column name="cantidadHoras" not-null="true" precision="2"/>
+        </property>
+        <property name="aprobado" type="java.lang.String">
+            <column name="aprobado" not-null="false" length="2"/>
+        </property>
+        <many-to-one name="administradorAprueba" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
+            <column name="administradorAprueba" not-null="false" length="30" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
