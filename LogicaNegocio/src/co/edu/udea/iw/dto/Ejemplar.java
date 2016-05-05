@@ -25,5 +25,4 @@ public class Ejemplar {
 		this.observaciones = observaciones;
 	}
 	
-
 }
