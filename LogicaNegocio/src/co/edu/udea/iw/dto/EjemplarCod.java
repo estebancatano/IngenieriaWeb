@@ -1,20 +1,23 @@
 package co.edu.udea.iw.dto;
 
-public class EjemplarCod {
-	//	clave foranea dispositivo
-	private long codigoDispositivo;  
-	private int consecutivo;
+import java.io.Serializable;
+
+public class EjemplarCod implements Serializable{
 	
-	public int getCodigoDispositivo() {
+	private Dispositivo codigoDispositivo;  
+	private Integer consecutivo;
+		
+	public Dispositivo getCodigoDispositivo() {
 		return codigoDispositivo;
 	}
-	public void setCodigoDispositivo(int codigoDispositivo) {
+	public void setCodigoDispositivo(Dispositivo codigoDispositivo) {
 		this.codigoDispositivo = codigoDispositivo;
 	}
-	public int getConsecutivo() {
+	public Integer getConsecutivo() {
 		return consecutivo;
 	}
-	public void setConsecutivo(int consecutivo) {
+	public void setConsecutivo(Integer consecutivo) {
 		this.consecutivo = consecutivo;
 	}
+		
 }
