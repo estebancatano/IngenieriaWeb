@@ -57,17 +57,14 @@ public class Reserva {
 		this.codigo = codigo;
 	}
 	/**
-	 * @return the codigoEjemplarDispositivo
+	 * @return the codigoDispositivo
 	 */
 	
-	/**
-	 * @return the ejemplar
-	 */
 	public Dispositivo getDispositivo() {
 		return dispositivo;
 	}
 	/**
-	 * @param ejemplar the ejemplar to set
+	 * @param the dispositivo to set
 	 */
 	public void setDispositivo(Dispositivo dispositivo) {
 		this.dispositivo = dispositivo;
