@@ -13,7 +13,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- DROP DATABASE `sistemaPrestamos`
 CREATE DATABASE IF NOT EXISTS `sistemaPrestamos` DEFAULT CHARACTER SET utf8 ;
---USE `sistemaPrestamos` ;
+-- USE `sistemaPrestamos` ;
 
 -- -----------------------------------------------------
 -- Table `sistemaPrestamos`.`Dispositivo`
