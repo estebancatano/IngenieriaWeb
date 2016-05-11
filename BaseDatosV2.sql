@@ -50,8 +50,9 @@ CREATE TABLE IF NOT EXISTS `sistemaPrestamos`.`Usuario` (
   `contrasena` VARCHAR(125) NOT NULL,
   `numeroDocumento` VARCHAR(12) NOT NULL,
   `nombres` VARCHAR(45) NOT NULL,
-  `apellidos` VARCHAR(45) NOT NULL,
+  `apellidos` VARCHAR(45) NOT NULL,	
   `rol` INT(3) NOT NULL,
+  `fechaSancion` DATETIME NULL,
   PRIMARY KEY (`usuario`),
   INDEX `fk_Usuario_Rol1_idx` (`rol` ASC),
   CONSTRAINT `fk_Usuario_Rol1`
