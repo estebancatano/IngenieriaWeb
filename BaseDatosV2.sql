@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema sistemaPrestamos
 -- -----------------------------------------------------
-DROP DATABASE `sistemaPrestamos`
+-- DROP DATABASE `sistemaPrestamos`
 CREATE DATABASE IF NOT EXISTS `sistemaPrestamos` DEFAULT CHARACTER SET utf8 ;
 --USE `sistemaPrestamos` ;
 
