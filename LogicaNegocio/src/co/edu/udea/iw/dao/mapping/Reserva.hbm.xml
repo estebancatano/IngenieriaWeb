@@ -8,10 +8,9 @@
             <column name="codigo" precision="15"/>
             <generator class="assigned"></generator>
         </id>
-        <many-to-one name="ejemplar" class="co.edu.udea.iw.dto.Ejemplar"
+        <many-to-one name="dispositivo" class="co.edu.udea.iw.dto.Dispositivo"
         		fetch="join">
-        	<column name="codigoDispositivo" not-null="true" precision="15"/>
-        	<column name="consecutivo" not-null="true" precision="2"></column>
+        	<column name="dispositivo" not-null="true" precision="15"/>
         </many-to-one>
         <many-to-one name="investigador" class="co.edu.udea.iw.dto.Usuario"
         		fetch="join">
