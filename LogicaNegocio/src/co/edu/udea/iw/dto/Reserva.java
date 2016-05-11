@@ -18,7 +18,7 @@ public class Reserva {
 	/**
 	 * Ejemplar que se quiere reservar
 	 */
-	private Ejemplar ejemplar;
+	private Dispositivo dispositivo;
 	/**
 	 * Nombre de usuario del investigador que hace la reserva
 	 */
@@ -63,14 +63,14 @@ public class Reserva {
 	/**
 	 * @return the ejemplar
 	 */
-	public Ejemplar getEjemplar() {
-		return ejemplar;
+	public Dispositivo getDispositivo() {
+		return dispositivo;
 	}
 	/**
 	 * @param ejemplar the ejemplar to set
 	 */
-	public void setEjemplar(Ejemplar ejemplar) {
-		this.ejemplar = ejemplar;
+	public void setDispositivo(Dispositivo dispositivo) {
+		this.dispositivo = dispositivo;
 	}
 	/**
 	 * @return the investigador

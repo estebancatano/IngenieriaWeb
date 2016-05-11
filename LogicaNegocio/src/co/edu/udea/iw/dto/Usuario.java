@@ -1,6 +1,7 @@
 package co.edu.udea.iw.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
 * Clase DTO para los datos de la tabla Usuario
@@ -31,8 +32,10 @@ public class Usuario implements Serializable{
     *Apellidos del usuario
     */
     private String apellidos;
-
-
+    
+    private Rol rol;
+    
+    private Date fechaSancion;
 
     public String getUsuario() {
         return usuario;
@@ -73,4 +76,33 @@ public class Usuario implements Serializable{
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
+
+	/**
+	 * @return the rol
+	 */
+	public Rol getRol() {
+		return rol;
+	}
+
+	/**
+	 * @param rol the rol to set
+	 */
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	/**
+	 * @return the fechaSancion
+	 */
+	public Date getFechaSancion() {
+		return fechaSancion;
+	}
+
+	/**
+	 * @param fechaSancion the fechaSancion to set
+	 */
+	public void setFechaSancion(Date fechaSancion) {
+		this.fechaSancion = fechaSancion;
+	}
+    
 }

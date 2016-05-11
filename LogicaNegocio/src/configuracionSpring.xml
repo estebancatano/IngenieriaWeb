@@ -48,10 +48,6 @@
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="usuarioHasRolDao" class="co.edu.udea.iw.dao.impl.UsuarioHasRolDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
 	<bean id="usuarioDao" class="co.edu.udea.iw.dao.impl.UsuarioDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -63,11 +59,7 @@
 	<bean id="prestamoDao" class="co.edu.udea.iw.dao.impl.PrestamoDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
-	<bean id="ejemplarDao" class="co.edu.udea.iw.dao.impl.EjemplarDAOImpl">
-	    <property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
+		
 	<bean id="dispositivoDao" class="co.edu.udea.iw.dao.impl.DispositivoDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
