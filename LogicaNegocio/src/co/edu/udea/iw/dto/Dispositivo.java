@@ -12,6 +12,7 @@ public class Dispositivo {
 	private String eliminado;
 	private Date fechaEliminacion;
 	private String administradorElimina;
+	private String estado;
 
 		
 	public Long getCodigo() {
@@ -85,5 +86,13 @@ public class Dispositivo {
 	public void setAdministradorElimina(String administradorElimina) {
 		this.administradorElimina = administradorElimina;
 	}
+		public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 
 }
