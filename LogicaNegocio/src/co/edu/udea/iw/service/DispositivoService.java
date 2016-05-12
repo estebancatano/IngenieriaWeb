@@ -12,15 +12,18 @@ import co.edu.udea.iw.exception.IWServiceException;
 import co.edu.udea.iw.util.validations.Validaciones;
 
 /**
- * 
+ * Clase que implementa los métodos de la lógica del negocio para Dispositivo.
  * @author Esteban Cataño
  * @author Vanesa Guzman
  * @author Jeison Triana
  * @version 1
  *
  */
-public class DispositivoService {
 
+@Transactional
+public class DispositivoService {
+	
+	/*Se crea una instacia de DispositivoDao para realizar cada una de las transaciones */
 	private DispositivoDAO dispositivoDao;
 
 	public DispositivoDAO getDispositivoDao() {
@@ -32,20 +35,33 @@ public class DispositivoService {
 	}
 
 	/**
-	 * 
-	 * @param codigo
-	 * @param descripcion
-	 * @param tipo
-	 * @param marca
-	 * @param valor
+	 * Método que guarda un dispositivo, realizando las validaciones pertinentes antes de almacenarlo. 
+	 * @param codigo de dispositivo
+	 * @param descripcion de dispositivo
+	 * @param tipo de dispositivo
+	 * @param marca de dispositivo
+	 * @param valor de dispositivo
+	 * @param estado de dispositivo
+	 * @param observacion de dispositivo
 	 * @throws IWDaoException
 	 */
+<<<<<<< HEAD
 	public void guardar(Long codigo, String descripcion, String tipo, String marca, 
 			String valor, String observacion, String estado)
 			throws IWDaoException {
+=======
+	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor, String estado, String observacion)
+			throws IWServiceException, IWDaoException {
+>>>>>>> af10b9ec0ff4a4842c458faa7d8f84fc7a98c331
 
+		
+		/*Se verifica que cada uno de los parámetros esten correctamente diligenciados*/
+		
 		if (codigo == null) {
-			throw new IWDaoException("El codigo de dispositivo no puede ser nulo");
+			throw new IWServiceException("El codigo de dispositivo no puede ser nulo");
+		}
+		if (codigo.equals("")) {
+			throw new IWServiceException("El código ingresado no debe ser una cadena vacía");
 		}
 
 		if (Validaciones.isTextoVacio(descripcion)) {
@@ -53,7 +69,7 @@ public class DispositivoService {
 		}
 
 		if (Validaciones.isTextoVacio(tipo)) {
-			throw new IWDaoException("El tipo de dispositivo no puede ser nulo, ni una cadena de carácteres vacía");
+			throw new IWServiceException("El tipo de dispositivo no puede ser nulo, ni una cadena de carácteres vacía");
 		}
 
 		if (Validaciones.isTextoVacio(marca)) {
@@ -63,13 +79,19 @@ public class DispositivoService {
 			valor = "";
 		}
 		if (Validaciones.isTextoVacio(estado)) {
+<<<<<<< HEAD
 			valor = "";
+=======
+			estado = "";
+>>>>>>> af10b9ec0ff4a4842c458faa7d8f84fc7a98c331
 		}
 		if (Validaciones.isTextoVacio(observacion)) {
 			observacion = "";
 		}
+		/*Se crea un objeto dispositivo*/
 		Dispositivo dispositivo = new Dispositivo();
 
+		/*Se llena el objeto con la nueva información sumisnistrada*/
 		dispositivo.setCodigo(codigo);
 		dispositivo.setDescripcion(descripcion);
 		dispositivo.setTipo(tipo);
@@ -81,51 +103,38 @@ public class DispositivoService {
 		dispositivo.setFechaEliminacion(null);
 		dispositivo.setAdministradorElimina(null);
 		dispositivo.setEliminado("NO");
-
+		
+		/*Se verifica que el código del dispositivo no exista*/
 		Dispositivo existe;
 		existe = dispositivoDao.obtener(codigo);
-
 		if (existe != null) {
 			throw new IWDaoException("El código: " + codigo + " del dispositivo ingresado ya existe en el sistema");
 		}
-
+		/*Se inserta el dispositivo en la BD*/
 		dispositivoDao.insertar(dispositivo);
 	}
 
-	/**
-	 * Método que accede a dispositivoDao para modificar el campo de eliminado
-	 * al dispositivo y así no tener que borrar el dispositivo lógicamente.
-	 * 
-	 * @param dispositivo
-	 * @param administradorElimina
-	 * @throws IWDaoException
-	 */
-	public void eliminar(Long codigo, String administradorElimina) throws IWDaoException {
-		Dispositivo dispositivo;
-		dispositivo = dispositivoDao.obtener(codigo);
-		dispositivo.setAdministradorElimina(administradorElimina);
-		dispositivo.setEliminado("SI");
-		dispositivo.setFechaEliminacion(new Date());
-		dispositivoDao.modificar(dispositivo);
-	}
 
 	/**
-	 * 
-	 * @param codigo
-	 * @param descripcion
-	 * @param tipo
-	 * @param marca
-	 * @param valor
+	 * Método que actualiza la información de un dispositivo dado su código.
+	 * @param codigo de dispositivo
+	 * @param descripcion de dispositivo
+	 * @param tipo de dispositivo
+	 * @param marca de dispositivo
+	 * @param valor de dispositivo
+	 * @param estado de dispositivo
+	 * @param observacion de dispositivo
 	 * @throws IWDaoException
 	 */
-	public void actualizar(Long codigo, String descripcion, String tipo, String marca, String valor,String estado, String observacion)
-			throws IWDaoException {
+	public void actualizar(Long codigo, String descripcion, String tipo, String marca, String valor, String estado, String observacion)
+			throws IWServiceException, IWDaoException{
 
+		/*Se verifica que cada uno de los parámetros esten correctamente diligenciados*/
 		if (Validaciones.isTextoVacio(descripcion)) {
 			descripcion = "";
 		}
 		if (Validaciones.isTextoVacio(tipo)) {
-			throw new IWDaoException("El tipo de dispositivo no puede ser nulo, ni una cadena de carácteres vacía");
+			throw new IWServiceException("El tipo de dispositivo no puede ser nulo, ni una cadena de carácteres vacía");
 		}
 		if (Validaciones.isTextoVacio(marca)) {
 			marca = "";
@@ -139,45 +148,80 @@ public class DispositivoService {
 		if (Validaciones.isTextoVacio(observacion)) {
 			observacion = "";
 		}
+		/*Se crea un objeto dispositivo*/
 		Dispositivo dispositivo = new Dispositivo();
+		
+		/*Se busca el dispositivo a modificar y se guarda*/
 		dispositivo = dispositivoDao.obtener(codigo);
+		
+		/*Se almacena la nueva información*/
 		dispositivo.setDescripcion(descripcion);
 		dispositivo.setTipo(tipo);
 		dispositivo.setMarca(marca);
 		dispositivo.setValor(valor);
-		dispositivo.setEstado(estado);
-		dispositivo.setObservacion(observacion);
+		dispositivo.setValor(estado);
 		
+		/*Se actualiza el dispositivo en la BD*/
 		dispositivoDao.modificar(dispositivo);
-
+	}
+	
+	
+	/**
+	 * Método que cambia el campo "eliminado" a "SI" de un dispositivo, con el propósito
+	 *  de que no sea borrado lógicamente del sistema.
+	 * @param codigo del dispositivo a eliminar.
+	 * @param administradorElimina es el nombre del administrador que realiza la eliminación.
+	 * @throws IWDaoException
+	 */
+	public void eliminar(Long codigo, String administradorElimina) throws IWDaoException {
+		
+		/*Declaro un objeto dispositivo*/
+		Dispositivo dispositivo;
+		
+		/*Obtengo el dispositivo a eliminar*/
+		dispositivo = dispositivoDao.obtener(codigo);
+		
+		/*Lleno los campos pertinentes a la eliminación*/
+		dispositivo.setAdministradorElimina(administradorElimina);
+		dispositivo.setEliminado("SI");
+		dispositivo.setFechaEliminacion(new Date());
+		
+		/*Actualizo la informacion del dispositivo en la BD*/
+		dispositivoDao.modificar(dispositivo);
 	}
 
+
 	/**
-	 * 
+	 * Método que entrega un dispositivo dado su código.
 	 * @param codigo
 	 * @return
 	 * @throws IWDaoException
 	 * @throws IWServiceException
 	 */
 	public Dispositivo obtener(Long codigo) throws IWDaoException, IWServiceException {
-
+		/*Se verifica que el código del dispositivo sea un valor válido*/
 		if (codigo == null) {
 			throw new IWServiceException("El código ingresado no debe ser nulo");
 		}
 		if (codigo.equals("")) {
 			throw new IWServiceException("El código ingresado no debe ser una cadena vacía");
 		}
+		/*Se retorna el dispositivo*/
 		return dispositivoDao.obtener(codigo);
 	}
 
 	/**
-	 * 
+	 * Método que entrega la lista de dispositivos que NO esten eliminados en el sistema lógicamente.
 	 * @return
 	 * @throws IWDaoException
 	 */
 	public List<Dispositivo> obtener() throws IWDaoException {
+		/*Se crea la lista que será retornada*/
 		List<Dispositivo> lista = null;
+		
+		/*Se llena la lista con los dispositivos que no estén eliminados*/
 		lista = dispositivoDao.obtener("eliminado", "NO");
+		
 		return lista;
 	}
 }
