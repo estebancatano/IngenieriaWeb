@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS `sistemaPrestamos`.`Dispositivo` (
   `tipo` VARCHAR(20) NOT NULL,
   `marca` VARCHAR(30) NULL,
   `valor` VARCHAR(9) NULL,
+  `estado` VARCHAR(10) NOT NULL,
+  `observacion` VARCHAR(500) NULL,
   `fechaAdquisicion` DATE NULL,
   `eliminado` VARCHAR(2) NULL,
   `fechaEliminacion` DATE NULL,
