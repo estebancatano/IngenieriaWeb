@@ -63,5 +63,9 @@
 	<bean id="dispositivoDao" class="co.edu.udea.iw.dao.impl.DispositivoDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+	
+	<bean id="dispositivoService" class="co.edu.udea.iw.service.DispositivoService">
+		<property name="dispositivoDao" ref="dispositivoDao"></property>
+	</bean>
+	
 </beans>
