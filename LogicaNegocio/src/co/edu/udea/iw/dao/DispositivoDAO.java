@@ -10,7 +10,7 @@ import co.edu.udea.iw.exception.IWDaoException;
 
 /**
  * Interface que define los metodos que va a proveer el dao de Dispositivo
- * @author Esteban Cata駉
+ * @author Esteban Cata帽o
  * @author Vanesa Guzman
  * @author Jeison Triana
  * @version 1
@@ -18,7 +18,7 @@ import co.edu.udea.iw.exception.IWDaoException;
 public interface DispositivoDAO {
 	/**
 	 * Metodo para insertar un prestamo en la base datos
-	 * @param prestamo Objeto Dispositivo con la informaci髇 del dispositivo a insertar
+	 * @param prestamo Objeto Dispositivo con la informaci贸n del dispositivo a insertar
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
 	public void insertar(Dispositivo dispositivo)throws IWDaoException;
@@ -32,14 +32,14 @@ public interface DispositivoDAO {
 	
 	/**
 	 *  Metodo para modificar un dispositivo de la base de datos
-	 * @param dispositivo Objeto Dispositivo con la informaci髇 del dispositivo a modificar
+	 * @param dispositivo Objeto Dispositivo con la informaci贸n del dispositivo a modificar
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
 	public void modificar(Dispositivo dispositivo) throws IWDaoException;
 	
 	/**
 	 *  Metodo para eliminar un dispositivo de la base de datos
-	 * @param dispositivo Objeto Dispositivo con la informaci髇 del dispositivo a eliminar
+	 * @param dispositivo Objeto Dispositivo con la informaci贸n del dispositivo a eliminar
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
 	public void eliminar(Dispositivo dispositivo) throws IWDaoException;
@@ -47,12 +47,12 @@ public interface DispositivoDAO {
 	/**
 	 *  Metodo para obtener un solo dispositivo de la base de datos
 	 * @param codigo Codigo del dispositivo que se desea consultar
-	 * @return Objeto Dispositivo con la informaci髇 del dispositivo consultado
+	 * @return Objeto Dispositivo con la informaci贸n del dispositivo consultado
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
-	public Dispositivo obtener(String codigo) throws IWDaoException;
+	public Dispositivo obtener(Long codigo) throws IWDaoException;
 	/**
-	 * M閠odo para obtener los dispositivo por medio de una columna diferente a la clave primaria
+	 * M茅todo para obtener los dispositivo por medio de una columna diferente a la clave primaria
 	 * @param nombreColumna Nombre de la columna por la cual se desea buscar
 	 * @param valorColumna Dato de la columna de los dispositivo que se desean obtener
 	 * @return Lista con los dispositivo que tiene el dato dado en la columna dada

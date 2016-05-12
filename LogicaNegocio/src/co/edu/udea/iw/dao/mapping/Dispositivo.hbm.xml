@@ -4,7 +4,7 @@
 <!-- Generated 4/05/2016 05:14:31 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="co.edu.udea.iw.dto.Dispositivo" table="Dispositivo">
-        <id name="codigo" type="int">
+        <id name="codigo" type="java.lang.Long">
             <column name="codigo" precision="15"/>
             <generator class="assigned" />
         </id>
