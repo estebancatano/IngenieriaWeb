@@ -21,11 +21,9 @@
 		<property name="mappingResources">
 			<list>
 				<value>co/edu/udea/iw/dao/mapping/Rol.hbm.xml</value>
-				<value>co/edu/udea/iw/dao/mapping/UsuarioHasRol.hbm.xml</value>
 				<value>co/edu/udea/iw/dao/mapping/Usuario.hbm.xml</value>
 				<value>co/edu/udea/iw/dao/mapping/Reserva.hbm.xml</value>
 				<value>co/edu/udea/iw/dao/mapping/Prestamo.hbm.xml</value>
-				<value>co/edu/udea/iw/dao/mapping/Ejemplar.hbm.xml</value>
 				<value>co/edu/udea/iw/dao/mapping/Dispositivo.hbm.xml</value>
 			</list>
 		</property>
@@ -64,4 +62,10 @@
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
+	<bean id="reservaService" class="co.edu.udea.iw.service.ReservaService">
+	    <property name="prestamoDao" ref="prestamoDao"></property>
+	    <property name="dispositivoDao" ref="dispositivoDao"></property>
+	    <property name="usuarioDao" ref="usuarioDao"></property>
+	    <property name="reservaDao" ref="reservaDao"></property>
+	</bean>
 </beans>

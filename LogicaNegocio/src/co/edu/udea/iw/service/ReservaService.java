@@ -140,12 +140,12 @@ public class ReservaService {
 	}
 
 	/**
-	 * 
-	 * @param dispositivo
-	 * @param fechaPrestamo
-	 * @param cantidadHoras
-	 * @return
-	 * @throws IWDaoException
+	 * Verifica que la reserva no se solape con otras reserva al mismo dispositivo
+	 * @param dispositivo Dispositivo a reservar
+	 * @param fechaPrestamo Fecha para la que se quiere prestar el dispositivo
+	 * @param cantidadHoras Número de horas que se desea prestar el dispositivo
+	 * @return true si el dispositivo se puede prestar en lapso de tiempo indicado
+	 * @throws IWDaoException Manejador de excepciones personalizado
 	 */
 	private boolean verificarFechaReserva(Dispositivo dispositivo, Date fechaPrestamo, Integer cantidadHoras) throws IWDaoException {
 		// TODO Auto-generated method stub
@@ -165,6 +165,12 @@ public class ReservaService {
 		return true;
 	}
 	
+	/**
+	 * Verifica que el usuario no tenga dispositivos sin devolver que superen la fecha límite
+	 * @param usuario Usuario que va a realizar la reserva
+	 * @return true si el usuario no tiene dispositivos sin devolver fuera del plazo establecido
+	 * @throws IWDaoException Manejador de excepciones personalizado
+	 */
 	private boolean verificarReservasUsuarios(Usuario usuario) throws IWDaoException{
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		List<Prestamo> prestamos;
