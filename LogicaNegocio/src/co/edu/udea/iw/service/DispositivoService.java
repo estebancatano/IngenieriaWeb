@@ -45,16 +45,10 @@ public class DispositivoService {
 	 * @param observacion de dispositivo
 	 * @throws IWDaoException
 	 */
-<<<<<<< HEAD
-	public void guardar(Long codigo, String descripcion, String tipo, String marca, 
-			String valor, String observacion, String estado)
-			throws IWDaoException {
-=======
+
 	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor, String estado, String observacion)
 			throws IWServiceException, IWDaoException {
->>>>>>> af10b9ec0ff4a4842c458faa7d8f84fc7a98c331
 
-		
 		/*Se verifica que cada uno de los parámetros esten correctamente diligenciados*/
 		
 		if (codigo == null) {
@@ -79,11 +73,7 @@ public class DispositivoService {
 			valor = "";
 		}
 		if (Validaciones.isTextoVacio(estado)) {
-<<<<<<< HEAD
-			valor = "";
-=======
 			estado = "";
->>>>>>> af10b9ec0ff4a4842c458faa7d8f84fc7a98c331
 		}
 		if (Validaciones.isTextoVacio(observacion)) {
 			observacion = "";
