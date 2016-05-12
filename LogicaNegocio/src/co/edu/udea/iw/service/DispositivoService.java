@@ -40,7 +40,8 @@ public class DispositivoService {
 	 * @param valor
 	 * @throws IWDaoException
 	 */
-	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor, String observacion)
+	public void guardar(Long codigo, String descripcion, String tipo, String marca, 
+			String valor, String observacion, String estado)
 			throws IWDaoException {
 
 		if (codigo == null) {
@@ -61,7 +62,7 @@ public class DispositivoService {
 		if (Validaciones.isTextoVacio(valor)) {
 			valor = "";
 		}
-			if (Validaciones.isTextoVacio(estado)) {
+		if (Validaciones.isTextoVacio(estado)) {
 			valor = "";
 		}
 		if (Validaciones.isTextoVacio(observacion)) {

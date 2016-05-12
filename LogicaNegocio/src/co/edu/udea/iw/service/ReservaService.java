@@ -10,9 +10,11 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.dao.DispositivoDAO;
+import co.edu.udea.iw.dao.PrestamoDAO;
 import co.edu.udea.iw.dao.ReservaDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.Prestamo;
 import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.IWDaoException;
@@ -34,15 +36,16 @@ public class ReservaService {
 	private ReservaDAO reservaDao;
 	private UsuarioDAO usuarioDao;
 	private DispositivoDAO dispositivoDao;
+	private PrestamoDAO prestamoDao;
 	
 	/**
-	 * 
-	 * @param codigoDispositivo
-	 * @param usuarioInvestigador
-	 * @param fechaPrestamo
-	 * @param cantidadHoras
-	 * @throws IWDaoException
-	 * @throws IWServiceException
+	 * Método BL para agregar una reserva 
+	 * @param codigoDispositivo Codigo del dispositivo a reservar
+	 * @param usuarioInvestigador Nombre de usuario del investigador que va a prestar el dispositivo
+	 * @param fechaPrestamo Fecha para la cual desea prestar el dispositivo
+	 * @param cantidadHoras Número de horas que desea prestar el dispositivo
+	 * @throws IWDaoException Manejar de Excepciones personalizado
+	 * @throws IWServiceException Manejar de Excepciones personalizado
 	 */
 	public void agregarReserva(Long codigoDispositivo, String usuarioInvestigador,
 			Date fechaPrestamo, Integer cantidadHoras) throws IWDaoException, IWServiceException{
@@ -67,6 +70,12 @@ public class ReservaService {
 		if(dispositivo == null){
 			throw new IWServiceException("El dispositivo que desea prestar no existe");
 		}
+		if(!"Disponible".equals(dispositivo.getEstado())){
+			throw new IWServiceException("El dispositivo no se encuentra disponible");
+		}
+		if("SI".equals(dispositivo.getEliminado())){
+			throw new IWServiceException("El dispositvo se encuentra dado de baja");
+		}
 		Usuario usuario = usuarioDao.obtener(usuarioInvestigador);
 		if(usuario == null){
 			throw new IWServiceException("El nombre de usuario no existe");
@@ -76,6 +85,10 @@ public class ReservaService {
 		}
 		if(usuario.getFechaSancion().after(fechaPrestamo)){
 			throw new IWServiceException("El usuario se encuentra sancionado");
+		}
+		if (!this.verificarReservasUsuarios(usuario)) {
+			throw new IWServiceException("El usuario tiene dispositivos sin devolver, que han"
+					+ "superado la fecha límite");
 		}
 		if(!this.verificarFechaReserva(dispositivo, fechaPrestamo,cantidadHoras)){
 			throw new IWServiceException("La reserva se cruza con otra reserva realizada previamente");
@@ -90,12 +103,12 @@ public class ReservaService {
 		reservaDao.insertar(reserva);
 	}
 	/**
-	 * 
-	 * @param codigoReserva
-	 * @param usuarioAdministracion
-	 * @param estado
-	 * @throws IWServiceException
-	 * @throws IWDaoException
+	 * Método BL para actualizar una reserva 
+	 * @param codigoReserva Codigo de la reserva que desea actualizar
+	 * @param usuarioAdministracion Nombre de usuario del administrador que actualiza la reserva
+	 * @param estado Indica si la aprobación manual de la reserva (SI o NO) 
+	 * @throws IWServiceException Manejador de excepciones personalizado
+	 * @throws IWDaoException Manejador de excepcion personalizado
 	 */
 	public void actualizarReserva(Long codigoReserva,String usuarioAdministracion, 
 			String estado) throws IWServiceException, IWDaoException{
@@ -151,6 +164,22 @@ public class ReservaService {
 		}
 		return true;
 	}
+	
+	private boolean verificarReservasUsuarios(Usuario usuario) throws IWDaoException{
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		List<Prestamo> prestamos;
+		reservas = reservaDao.obtener("investigador", usuario.getUsuario());
+		for(Reserva r:reservas){
+			prestamos = prestamoDao.obtener("codigoReserva", r.getCodigo().toString());
+			for(Prestamo p : prestamos){
+				if(p.getFechaDevolucion() == null && 
+						(p.getFechaMaximaDevolucion().before(new Date()))){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * @return the reservaDao
@@ -192,6 +221,18 @@ public class ReservaService {
 	 */
 	public void setDispositivoDao(DispositivoDAO dispositivoDao) {
 		this.dispositivoDao = dispositivoDao;
+	}
+	/**
+	 * @return the prestamoDao
+	 */
+	public PrestamoDAO getPrestamoDao() {
+		return prestamoDao;
+	}
+	/**
+	 * @param prestamoDao the prestamoDao to set
+	 */
+	public void setPrestamoDao(PrestamoDAO prestamoDao) {
+		this.prestamoDao = prestamoDao;
 	}
 	
 }
