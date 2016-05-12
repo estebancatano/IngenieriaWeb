@@ -3,7 +3,9 @@
  */
 package co.edu.udea.iw.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +17,7 @@ import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.IWDaoException;
 import co.edu.udea.iw.exception.IWServiceException;
+import co.edu.udea.iw.util.dates.UtilFecha;
 import co.edu.udea.iw.util.validations.Validaciones;
 
 /**
@@ -47,10 +50,53 @@ public class ReservaService {
 		if(fechaPrestamo.before(new Date())){
 			throw new IWServiceException("La fecha no puede ser menor a la actual");
 		}
-		if(cantidadHoras < 1){
-			throw new IWServiceException("La cantidad de horas a prestar no puede ser nula");
+		if(cantidadHoras < 1 || cantidadHoras > 8){
+			throw new IWServiceException("La cantidad de horas a prestar no puede estar por fuera del"
+					+ "rango específicado");
 		}
 		Dispositivo dispositivo = dispositivoDao.obtener(codigoDispositivo);
+		if(dispositivo == null){
+			throw new IWServiceException("El dispositivo que desea prestar no existe");
+		}
+		Usuario usuario = usuarioDao.obtener(usuarioInvestigador);
+		if(usuario == null){
+			throw new IWServiceException("El nombre de usuario no existe");
+		}
+		if("Investigador".equals(usuario.getRol().getNombres())){
+			throw new IWServiceException("El usuario no posee el rol de investigador");
+		}
+		if(usuario.getFechaSancion().after(fechaPrestamo)){
+			throw new IWServiceException("El usuario se encuentra sancionado");
+		}
+		if(!this.verificarFechaReserva(dispositivo, fechaPrestamo,cantidadHoras)){
+			throw new IWServiceException("La reserva se cruza con otra reserva realizada previamente");
+		}
+		reserva = new Reserva();
+		reserva.setDispositivo(dispositivo);
+		reserva.setInvestigador(usuario);
+		reserva.setFechaSolicitud(new Date());
+		reserva.setFechaPrestamo(fechaPrestamo);
+		reserva.setCantidadHoras(cantidadHoras);
+		reserva.setAprobado("SI");
+		reservaDao.insertar(reserva);
+	}
+
+	private boolean verificarFechaReserva(Dispositivo dispositivo, Date fechaPrestamo, Integer cantidadHoras) throws IWDaoException {
+		// TODO Auto-generated method stub
+		List<Reserva> reservas = new ArrayList<Reserva>();
+		Date fechaLimite;
+		Date fechaLimiteOtrasReservas;
+		reservas = reservaDao.obtener("dispositivo", dispositivo.getCodigo().toString());
+		for(Reserva r:reservas){
+			fechaLimite = UtilFecha.sumarRestarHorasFecha(fechaPrestamo, cantidadHoras);
+			fechaLimiteOtrasReservas = UtilFecha.sumarRestarHorasFecha
+					(r.getFechaPrestamo(), r.getCantidadHoras());
+			if(fechaLimite.after(r.getFechaPrestamo()) 
+					&& fechaLimite.before(fechaLimiteOtrasReservas)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
