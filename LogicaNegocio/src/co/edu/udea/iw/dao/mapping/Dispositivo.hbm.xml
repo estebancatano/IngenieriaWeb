@@ -32,5 +32,11 @@
         <property name="administradorElimina" type="java.lang.String">
             <column name="administradorElimina" length="45" />
         </property>
+        <property name="estado" type="java.lang.String">
+            <column name="estado" length="10" />
+        </property>
+        <property name="observacion" type="java.lang.String">
+            <column name="observacion" length="500" />
+        </property>
     </class>
 </hibernate-mapping>
