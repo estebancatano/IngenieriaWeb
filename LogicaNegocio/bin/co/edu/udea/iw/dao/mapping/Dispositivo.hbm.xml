@@ -29,9 +29,10 @@
         <property name="fechaEliminacion" type="java.util.Date">
             <column name="fechaEliminacion" />
         </property>
-        <property name="administradorElimina" type="java.lang.String">
+        <many-to-one name="administradorElimina" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
             <column name="administradorElimina" length="45" />
-        </property>
+        </many-to-one>
         <property name="estado" type="java.lang.String">
             <column name="estado" length="10" />
         </property>

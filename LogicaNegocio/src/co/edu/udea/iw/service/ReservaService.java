@@ -70,12 +70,14 @@ public class ReservaService {
 		if(dispositivo == null){
 			throw new IWServiceException("El dispositivo que desea prestar no existe");
 		}
-		if(!"DISPONIBLE".equals(dispositivo.getEstado())){
-			throw new IWServiceException("El dispositivo no se encuentra disponible");
-		}
 		if("SI".equals(dispositivo.getEliminado())){
 			throw new IWServiceException("El dispositvo se encuentra dado de baja");
 		}
+		
+		if(!"DISPONIBLE".equals(dispositivo.getEstado())){
+			throw new IWServiceException("El dispositivo no se encuentra disponible");
+		}
+		
 		Usuario usuario = usuarioDao.obtener(usuarioInvestigador);
 		if(usuario == null){
 			throw new IWServiceException("El nombre de usuario no existe");
