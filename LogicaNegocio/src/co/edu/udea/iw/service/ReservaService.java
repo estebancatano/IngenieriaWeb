@@ -35,6 +35,15 @@ public class ReservaService {
 	private UsuarioDAO usuarioDao;
 	private DispositivoDAO dispositivoDao;
 	
+	/**
+	 * 
+	 * @param codigoDispositivo
+	 * @param usuarioInvestigador
+	 * @param fechaPrestamo
+	 * @param cantidadHoras
+	 * @throws IWDaoException
+	 * @throws IWServiceException
+	 */
 	public void agregarReserva(Long codigoDispositivo, String usuarioInvestigador,
 			Date fechaPrestamo, Integer cantidadHoras) throws IWDaoException, IWServiceException{
 		Reserva reserva = null;
@@ -80,7 +89,51 @@ public class ReservaService {
 		reserva.setAprobado("SI");
 		reservaDao.insertar(reserva);
 	}
+	/**
+	 * 
+	 * @param codigoReserva
+	 * @param usuarioAdministracion
+	 * @param estado
+	 * @throws IWServiceException
+	 * @throws IWDaoException
+	 */
+	public void actualizarReserva(Long codigoReserva,String usuarioAdministracion, 
+			String estado) throws IWServiceException, IWDaoException{
+		Reserva reserva;
+		if(Validaciones.isTextoVacio(Long.toString(codigoReserva))){
+			throw new IWServiceException("El código de la reserva no puede ser nulo");
+		}
+		if(Validaciones.isTextoVacio(usuarioAdministracion)){
+			throw new IWServiceException("El nombre de usuario del administrador"
+					+ " no puede ser nulo");
+		}
+		if(Validaciones.isTextoVacio(estado)){
+			throw new IWServiceException("El nuevo estado de la reserva no puede ser nulo");
+		}
+		Usuario usuario = usuarioDao.obtener(usuarioAdministracion);
+		if(usuario == null){
+			throw new IWServiceException("El usuario no existe");
+		}
+		if("Administrador".equals(usuario.getRol().getNombres())){
+			throw new IWServiceException("El usuario no posee el rol de administrador");
+		}
+		reserva = reservaDao.obtener(codigoReserva);
+		if(reserva == null){
+			throw new IWServiceException("La reserva no existe");
+		}
+		reserva.setAprobado(estado);
+		reserva.setAdministradorAprueba(usuario);
+		reservaDao.modificar(reserva);
+	}
 
+	/**
+	 * 
+	 * @param dispositivo
+	 * @param fechaPrestamo
+	 * @param cantidadHoras
+	 * @return
+	 * @throws IWDaoException
+	 */
 	private boolean verificarFechaReserva(Dispositivo dispositivo, Date fechaPrestamo, Integer cantidadHoras) throws IWDaoException {
 		// TODO Auto-generated method stub
 		List<Reserva> reservas = new ArrayList<Reserva>();

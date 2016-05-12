@@ -47,7 +47,7 @@ public interface ReservaDAO {
 	 * @return Objeto Reserva con la información de la reserva consultada
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
-	public Reserva obtener(String codigo) throws IWDaoException;
+	public Reserva obtener(Long codigo) throws IWDaoException;
 	/**
 	 * Método para obtener las reservas por medio de una columna diferente a la clave primaria
 	 * @param nombreColumna Nombre de la columna por la cual se desea buscar
