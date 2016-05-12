@@ -40,7 +40,7 @@ public class DispositivoService {
 	 * @param valor
 	 * @throws IWDaoException
 	 */
-	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor)
+	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor, String observacion)
 			throws IWDaoException {
 
 		if (codigo == null) {
@@ -61,6 +61,12 @@ public class DispositivoService {
 		if (Validaciones.isTextoVacio(valor)) {
 			valor = "";
 		}
+			if (Validaciones.isTextoVacio(estado)) {
+			valor = "";
+		}
+		if (Validaciones.isTextoVacio(observacion)) {
+			observacion = "";
+		}
 		Dispositivo dispositivo = new Dispositivo();
 
 		dispositivo.setCodigo(codigo);
@@ -68,6 +74,8 @@ public class DispositivoService {
 		dispositivo.setTipo(tipo);
 		dispositivo.setMarca(marca);
 		dispositivo.setValor(valor);
+		dispositivo.setEstado(estado);
+		dispositivo.setObservacion(observacion);
 		dispositivo.setFechaAdquisicion(new Date());
 		dispositivo.setFechaEliminacion(null);
 		dispositivo.setAdministradorElimina(null);
@@ -109,7 +117,7 @@ public class DispositivoService {
 	 * @param valor
 	 * @throws IWDaoException
 	 */
-	public void actualizar(Long codigo, String descripcion, String tipo, String marca, String valor)
+	public void actualizar(Long codigo, String descripcion, String tipo, String marca, String valor,String estado, String observacion)
 			throws IWDaoException {
 
 		if (Validaciones.isTextoVacio(descripcion)) {
@@ -124,14 +132,21 @@ public class DispositivoService {
 		if (Validaciones.isTextoVacio(valor)) {
 			valor = "";
 		}
-
+		if (Validaciones.isTextoVacio(estado)) {
+			estado = "";
+		}
+		if (Validaciones.isTextoVacio(observacion)) {
+			observacion = "";
+		}
 		Dispositivo dispositivo = new Dispositivo();
 		dispositivo = dispositivoDao.obtener(codigo);
 		dispositivo.setDescripcion(descripcion);
 		dispositivo.setTipo(tipo);
 		dispositivo.setMarca(marca);
 		dispositivo.setValor(valor);
-
+		dispositivo.setEstado(estado);
+		dispositivo.setObservacion(observacion);
+		
 		dispositivoDao.modificar(dispositivo);
 
 	}
