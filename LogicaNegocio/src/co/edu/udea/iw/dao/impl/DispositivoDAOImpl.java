@@ -18,8 +18,8 @@ import co.edu.udea.iw.dto.Dispositivo;
 import co.edu.udea.iw.exception.IWDaoException;
 
 /**
- * Implementación de la interfaz DispositivoDAO
- * @author Esteban Cataño
+ * ImplementaciÃ³n de la interfaz DispositivoDAO
+ * @author Esteban CataÃ±o
  * @author Vanesa Guzman
  * @author Jeison Triana
  * @version 1
@@ -107,12 +107,12 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 	 * @see co.edu.udea.iw.dao.DispositivoDAO#obtener(java.lang.String)
 	 */
 	@Override
-	public Dispositivo obtener(String codigo) throws IWDaoException {
+	public Dispositivo obtener(Long codigo) throws IWDaoException {
 		// TODO Auto-generated method stub
 		Dispositivo dispositivo = null;
 		Session session = null;
 		try{
-			// Se obtiene la sessión a la base de datos
+			// Se obtiene la sessiÃ³n a la base de datos
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se crea el objeto criteria y se le agrega un restriccion de igualdad
 			dispositivo = (Dispositivo)session.get(Dispositivo.class, codigo);
@@ -131,7 +131,7 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 		List<Dispositivo> dispositivos = null;
 		Session session = null;
 		try{
-			// Se obtiene la sessión a la base de datos
+			// Se obtiene la sessiÃ³n a la base de datos
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se crea el objeto criteria y se le agrega un restriccion de igualdad
 			Criteria criteria = session.createCriteria(Dispositivo.class).add(
