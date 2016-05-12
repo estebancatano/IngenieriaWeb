@@ -13,8 +13,8 @@ public class Dispositivo {
 	private Date fechaEliminacion;
 	private String administradorElimina;
 	private String estado;
-
-		
+	private String observacion;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -92,6 +92,14 @@ public class Dispositivo {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+			
+	public String getObservacion() {
+		return observacion;
+	}
+
+	public void setObservacion(String observacion) {
+		this.observacion = observacion;
 	}
 
 
