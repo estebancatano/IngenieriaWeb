@@ -61,7 +61,6 @@
 	<bean id="dispositivoDao" class="co.edu.udea.iw.dao.impl.DispositivoDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-<<<<<<< HEAD
 
 	<bean id="reservaService" class="co.edu.udea.iw.service.ReservaService">
 	    <property name="prestamoDao" ref="prestamoDao"></property>
@@ -69,11 +68,8 @@
 	    <property name="usuarioDao" ref="usuarioDao"></property>
 	    <property name="reservaDao" ref="reservaDao"></property>
 	</bean>
-=======
 	
 	<bean id="dispositivoService" class="co.edu.udea.iw.service.DispositivoService">
 		<property name="dispositivoDao" ref="dispositivoDao"></property>
 	</bean>
-	
->>>>>>> 58075780d5565c80374f0f7e36cc36fb75d5d102
 </beans>
