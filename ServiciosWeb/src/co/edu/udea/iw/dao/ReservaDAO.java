@@ -55,5 +55,5 @@ public interface ReservaDAO {
 	 * @return Lista con las reservas que tiene el dato dado en la columna dada
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
-	public List<Reserva> obtener(String nombreColumna, String valorColumna) throws IWDaoException;
+	public List<Reserva> obtener(String nombreColumna, Object valorColumna) throws IWDaoException;
 }

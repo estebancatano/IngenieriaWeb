@@ -170,7 +170,7 @@ public class ReservaService {
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		Date fechaLimite;
 		Date fechaLimiteOtrasReservas;
-		reservas = reservaDao.obtener("dispositivo", dispositivo.getCodigo().toString());
+		reservas = reservaDao.obtener("dispositivo", dispositivo);
 		for(Reserva r:reservas){
 			fechaLimite = UtilFecha.sumarRestarHorasFecha(fechaPrestamo, cantidadHoras);
 			fechaLimiteOtrasReservas = UtilFecha.sumarRestarHorasFecha
@@ -192,7 +192,7 @@ public class ReservaService {
 	private boolean verificarReservasUsuarios(Usuario usuario) throws IWDaoException{
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		List<Prestamo> prestamos;
-		reservas = reservaDao.obtener("investigador", usuario.getUsuario());
+		reservas = reservaDao.obtener("investigador", usuario);
 		for(Reserva r:reservas){
 			prestamos = prestamoDao.obtener("codigoReserva", r.getCodigo().toString());
 			for(Prestamo p : prestamos){

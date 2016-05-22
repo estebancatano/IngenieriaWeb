@@ -85,7 +85,6 @@ public class UsuarioService {
 	 * verifica si la fecha es correcta, si la fecha es mayor a la fecha limite
 	 * se genera una sancion de x dias * @param fecha1
 	 * 
-	 * @throws java.text.ParseException
 	 */
 	public void sancionar() {
 

@@ -6,7 +6,7 @@
     <class name="co.edu.udea.iw.dto.Dispositivo" table="Dispositivo">
         <id name="codigo" type="java.lang.Long">
             <column name="codigo" precision="15"/>
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="descripcion" type="java.lang.String">
             <column name="descripcion" length="100"/>

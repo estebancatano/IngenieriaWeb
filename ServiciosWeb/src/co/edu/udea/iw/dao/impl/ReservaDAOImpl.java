@@ -125,7 +125,7 @@ public class ReservaDAOImpl extends HibernateDaoSupport implements ReservaDAO {
 	 * @see co.edu.udea.iw.dao.ReservaDAO#obtener(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<Reserva> obtener(String nombreColumna, String valorColumna) throws IWDaoException {
+	public List<Reserva> obtener(String nombreColumna, Object valorColumna) throws IWDaoException {
 		// TODO Auto-generated method stub
 		List<Reserva> reservas = null;
 		Session session = null;

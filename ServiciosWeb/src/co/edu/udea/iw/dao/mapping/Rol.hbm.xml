@@ -6,7 +6,7 @@
     <class name="co.edu.udea.iw.dto.Rol" table="Rol">
         <id name="codigo" type="java.lang.Integer">
             <column name="codigo" precision="3" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="nombre" type="java.lang.String">
             <column name="nombre" length="30" not-null="true"/>

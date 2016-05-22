@@ -10,12 +10,12 @@ import java.util.Date;
 * @author Jeison Triana
 * @version 1
 */
-public class Usuario implements Serializable{
+public class Usuario {
 	
   	/**
 	* Nombre de usuario en el sistema, es la clave primaria
 	*/
-    private String usuario;
+    private String nombreUsuario;
     /**
     *Contraseña de acceso
     */
@@ -37,15 +37,23 @@ public class Usuario implements Serializable{
     
     private Date fechaSancion;
 
-    public String getUsuario() {
-        return usuario;
-    }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
 
-    public String getContrasena() {
+    /**
+	 * @return the nombreUsuario
+	 */
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	/**
+	 * @param nombreUsuario the nombreUsuario to set
+	 */
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getContrasena() {
         return contrasena;
     }
 

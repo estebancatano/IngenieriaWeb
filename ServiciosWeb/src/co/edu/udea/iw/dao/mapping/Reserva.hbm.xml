@@ -6,7 +6,7 @@
     <class name="co.edu.udea.iw.dto.Reserva" table="Reserva">
         <id name="codigo" type="java.lang.Long">
             <column name="codigo" precision="15"/>
-            <generator class="assigned"></generator>
+            <generator class="increment"></generator>
         </id>
         <many-to-one name="dispositivo" class="co.edu.udea.iw.dto.Dispositivo"
         		fetch="join">

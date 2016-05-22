@@ -56,15 +56,14 @@
 	<bean id="reservaDao" class="co.edu.udea.iw.dao.impl.ReservaDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
-	<bean id="prestamoDao" class="co.edu.udea.iw.dao.impl.PrestamoDAOImpl">
-	    <property name="sessionFactory" ref="sessionFactory"></property>
-	    <property name="dispositivoDao" ref="dispositivoDao"></property>
-	</bean>
-		
 	<bean id="dispositivoDao" class="co.edu.udea.iw.dao.impl.DispositivoDAOImpl">
 	    <property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="prestamoDao" class="co.edu.udea.iw.dao.impl.PrestamoDAOImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		
+	
 
 	<bean id="reservaService" class="co.edu.udea.iw.service.ReservaService">
 	    <property name="prestamoDao" ref="prestamoDao"></property>
@@ -84,7 +83,8 @@
 	</bean>
 	
 	<bean id="prestamoService" class="co.edu.udea.iw.service.PrestamoService">
-	    <property name="prestamoDao" ref="prestamoDao"></property>
+	    <property name="dispositivoDao" ref="dispositivoDao"></property>
+		<property name="prestamoDao" ref="prestamoDao"></property>
 	    <property name="usuarioDao" ref="usuarioDao"></property>
 	    <property name="reservaDao" ref="reservaDao"></property>
 	    <property name="reservaService" ref="reservaService"></property>

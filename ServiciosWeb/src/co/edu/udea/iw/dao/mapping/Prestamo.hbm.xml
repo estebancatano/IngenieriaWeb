@@ -6,7 +6,7 @@
     <class name="co.edu.udea.iw.dto.Prestamo" table="Prestamo">
         <id name="codigo" type="java.lang.Integer">
             <column name="codigo" precision="15"/>
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="codigoReserva" class="co.edu.udea.iw.dto.Reserva"
         		fetch="join">

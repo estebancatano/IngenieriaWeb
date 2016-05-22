@@ -9,7 +9,7 @@ import java.io.Serializable;
 * @author Jeison Triana
 * @version 1
 */
-public class Rol implements Serializable{
+public class Rol {
 	
 	/**
 	 * Código del rol
