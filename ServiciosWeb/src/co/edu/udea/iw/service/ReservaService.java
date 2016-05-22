@@ -194,7 +194,7 @@ public class ReservaService {
 		List<Prestamo> prestamos;
 		reservas = reservaDao.obtener("investigador", usuario);
 		for(Reserva r:reservas){
-			prestamos = prestamoDao.obtener("codigoReserva", r.getCodigo().toString());
+			prestamos = prestamoDao.obtener("codigoReserva", r);
 			for(Prestamo p : prestamos){
 				if(p.getFechaDevolucion() == null && 
 						(p.getFechaMaximaDevolucion().before(new Date()))){

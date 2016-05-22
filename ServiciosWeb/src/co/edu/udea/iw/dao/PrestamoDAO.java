@@ -58,5 +58,5 @@ public interface PrestamoDAO {
 	 * @return Lista con los prestamos que tiene el dato dado en la columna dada
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
-	public List<Prestamo> obtener(String nombreColumna, String valorColumna) throws IWDaoException;
+	public List<Prestamo> obtener(String nombreColumna, Object valorColumna) throws IWDaoException;
 }

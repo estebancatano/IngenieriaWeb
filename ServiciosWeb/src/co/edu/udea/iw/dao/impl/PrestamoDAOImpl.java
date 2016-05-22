@@ -125,7 +125,7 @@ public class PrestamoDAOImpl extends HibernateDaoSupport implements PrestamoDAO 
 	 * @see co.edu.udea.iw.dao.PrestamoDAO#obtener(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public List<Prestamo> obtener(String nombreColumna, String valorColumna) throws IWDaoException {
+	public List<Prestamo> obtener(String nombreColumna, Object valorColumna) throws IWDaoException {
 		// TODO Auto-generated method stub
 		List<Prestamo> prestamos = null;
 		Session session = null;
