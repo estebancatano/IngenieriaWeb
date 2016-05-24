@@ -215,7 +215,7 @@ public class DispositivoService {
 
 
 	/**
-	 * Método que entrega un dispositivo dado su código.
+	 * Metodo que entrega un dispositivo dado su código.
 	 * @param codigo
 	 * @return
 	 * @throws IWDaoException
@@ -224,10 +224,10 @@ public class DispositivoService {
 	public Dispositivo obtener(Long codigo) throws IWDaoException, IWServiceException {
 		/*Se verifica que el código del dispositivo sea un valor válido*/
 		if (codigo == null) {
-			throw new IWServiceException("El código ingresado no debe ser nulo");
+			throw new IWServiceException("El codigo ingresado no debe ser nulo");
 		}
 		if (codigo.equals("")) {
-			throw new IWServiceException("El código ingresado no debe ser una cadena vacía");
+			throw new IWServiceException("El codigo ingresado no debe ser una cadena vacía");
 		}
 		/*Se retorna el dispositivo*/
 		return dispositivoDao.obtener(codigo);

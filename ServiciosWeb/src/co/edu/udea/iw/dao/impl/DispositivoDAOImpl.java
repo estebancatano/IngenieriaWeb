@@ -37,9 +37,9 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.save(dispositivo);
-			tx.commit();
+//			tx.commit();
 		}catch(HibernateException he){
 			throw new IWDaoException(he);
 		}
@@ -74,9 +74,9 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.update(dispositivo);
-			tx.commit();
+//			tx.commit();
 			
 		}catch(HibernateException he){
 			throw new IWDaoException(he);
@@ -94,9 +94,9 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.delete(dispositivo);
-			tx.commit();
+//			tx.commit();
 			
 		}catch(HibernateException he){
 			throw new IWDaoException(he);

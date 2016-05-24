@@ -78,7 +78,7 @@ public class DispositivoWS {
 	}
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("Listar")
 	public List<DispositivoDTOWS> listarDispositivos() throws IWDaoException {
 		List<DispositivoDTOWS> lista = new ArrayList<DispositivoDTOWS>();
@@ -102,8 +102,8 @@ public class DispositivoWS {
 	}
 
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("Consultar/{cod}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("Consultar")
 	public Dispositivo consultarDispositivo(@QueryParam("cod") Long cod) throws IWServiceException, IWDaoException {
 		
 		try {

@@ -36,9 +36,9 @@ public class ReservaDAOImpl extends HibernateDaoSupport implements ReservaDAO {
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.save(reserva);
-			tx.commit();
+//			tx.commit();
 		}catch(HibernateException he){
 			throw new IWDaoException(he);
 		}
@@ -73,9 +73,9 @@ public class ReservaDAOImpl extends HibernateDaoSupport implements ReservaDAO {
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.update(reserva);
-			tx.commit();
+//			tx.commit();
 			
 		}catch(HibernateException he){
 			throw new IWDaoException(he);
@@ -93,9 +93,9 @@ public class ReservaDAOImpl extends HibernateDaoSupport implements ReservaDAO {
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
 			// cache, sino que lo inserte inmediatamente en la base de datos
-			Transaction tx = session.beginTransaction();
+//			Transaction tx = session.beginTransaction();
 			session.delete(reserva);
-			tx.commit();
+//			tx.commit();
 			
 		}catch(HibernateException he){
 			throw new IWDaoException(he);
