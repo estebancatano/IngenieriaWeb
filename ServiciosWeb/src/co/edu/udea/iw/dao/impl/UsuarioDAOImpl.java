@@ -12,8 +12,18 @@ import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.IWDaoException;
 
+/**
+ * Implementación de la interfaz RolDAO
+ * @author Esteban Cataño
+ * @author Vanesa Guzman
+ * @author Jeison Triana
+ * @version 1
+ */
 public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 
+	/**
+	 * Metodo que permite la insersion de un usuario
+	 */
 	@Override
 	public Usuario insertar(Usuario usuario) throws IWDaoException {
 		
@@ -27,6 +37,9 @@ public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 		return usuario;
 	}
 
+	/**
+	 * Metodo que permite modificar un usuario existente
+	 */
 	@Override
 	public Usuario modificar(Usuario usuario) throws IWDaoException {
 		Session session = null;
@@ -42,7 +55,9 @@ public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 		return usuario;
 	}
 
-	
+	/**
+	 * Metodo que obtiene una lista con los usuarios existentes
+	 */
 	@Override
 	public List<Usuario> obtener() throws IWDaoException {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
@@ -61,6 +76,9 @@ public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 		return usuarios;
 	}
 
+	/**
+	 * Metodo que obtiene un usuario por su nombreUsuario unico
+	 */
 	@Override
 	public Usuario obtener(String nombreUsuario) throws IWDaoException {
 		Usuario usuario = null;

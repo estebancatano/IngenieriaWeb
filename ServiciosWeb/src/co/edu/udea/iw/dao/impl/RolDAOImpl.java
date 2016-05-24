@@ -12,8 +12,18 @@ import co.edu.udea.iw.dao.RolDAO;
 import co.edu.udea.iw.dto.Rol;
 import co.edu.udea.iw.exception.IWDaoException;
 
+/**
+ * Implementación de la interfaz RolDAO
+ * @author Esteban Cataño
+ * @author Vanesa Guzman
+ * @author Jeison Triana
+ * @version 1
+ */
 public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 
+	/**
+	 * Metodo que permite la insersion de un Rol
+	 */
 	@Override
 	public Rol insertar(Rol rol) throws IWDaoException {
 		
@@ -21,17 +31,24 @@ public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 		try{
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
 			session.save(rol);
+			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
+			// cache, sino que lo inserte inmediatamente en la base de datos
 		}catch(HibernateException e){
 			throw new IWDaoException(e);
 		}
 		return rol;
 	}
 
+	/**
+	 * Metodo que permite modificar un rol existente
+	 */
 	@Override
 	public Rol modificar(Rol rol) throws IWDaoException {
 		Session session = null;
 		try{
 			session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+			// Se utiliza el objeto Transaction para evitar que no lo guarde en la
+			// cache, sino que lo inserte inmediatamente en la base de datos
 			
 			session.update(rol);
 			
@@ -42,7 +59,9 @@ public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 		return rol;
 	}
 
-	
+	/**
+	 * Metodo que retorna una lista con los roles
+	 */
 	@Override
 	public List<Rol> obtener() throws IWDaoException {
 		List<Rol> rols = new ArrayList<Rol>();
@@ -60,7 +79,9 @@ public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 		
 		return rols;
 	}
-
+	/**
+	 * Metodo que obtiene un rol dado un codigo
+	 */
 	@Override
 	public Rol obtener(Integer codigo) throws IWDaoException {
 		Rol rol = null;

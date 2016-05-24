@@ -19,7 +19,7 @@ public interface UsuarioDAO {
 	
 	/**
 	 * Crea un nuevo Usuario en el sistema
-	 * @param Usuario instancia del Usuario a crear
+	 * @param UsuarioWS instancia del Usuario a crear
 	 * @return Usuario insertado
 	 * @throws IWDaoException cuando ocurre cualquier error en la comunicación con la BD
 	 */
@@ -27,7 +27,7 @@ public interface UsuarioDAO {
 	
 	/**
 	 * Modifica la información de un Usuario en el sistema
-	 * @param Usuario instancia del Usuario con los datos a modificar
+	 * @param UsuarioWS instancia del Usuario con los datos a modificar
 	 * @return Usuario modificado
 	 * @throws IWDaoException cuando ocurre cualquier error en la comunicación con la BD
 	 */
