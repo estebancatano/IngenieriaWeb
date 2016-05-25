@@ -23,7 +23,7 @@ public interface RolDAO {
 	 * @return Rol insertado
 	 * @throws IWDaoException cuando ocurre cualquier error en la comunicación con la BD
 	 */
-	public Rol insertar(Rol rol) throws IWDaoException;
+	public void insertar(Rol rol) throws IWDaoException;
 	
 	/**
 	 * Modifica la información de un Rol en el sistema

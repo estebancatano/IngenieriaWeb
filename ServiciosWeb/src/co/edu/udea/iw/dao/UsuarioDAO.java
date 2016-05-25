@@ -19,11 +19,11 @@ public interface UsuarioDAO {
 	
 	/**
 	 * Crea un nuevo Usuario en el sistema
-	 * @param UsuarioWS instancia del Usuario a crear
+	 * @param usuario instancia del Usuario a crear
 	 * @return Usuario insertado
 	 * @throws IWDaoException cuando ocurre cualquier error en la comunicación con la BD
 	 */
-	public Usuario insertar(Usuario usuario) throws IWDaoException;
+	public void insertar(Usuario usuario) throws IWDaoException;
 	
 	/**
 	 * Modifica la información de un Usuario en el sistema

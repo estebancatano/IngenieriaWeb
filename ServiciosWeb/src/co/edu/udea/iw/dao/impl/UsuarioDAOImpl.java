@@ -23,9 +23,9 @@ public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 
 	/**
 	 * Metodo que permite la insersion de un usuario
-	 */
+	 */	
 	@Override
-	public Usuario insertar(Usuario usuario) throws IWDaoException {
+	public void insertar(Usuario usuario) throws IWDaoException {
 		
 		Session session = null;
 		try{
@@ -34,7 +34,6 @@ public class UsuarioDAOImpl extends HibernateDaoSupport implements UsuarioDAO {
 		}catch(HibernateException e){
 			throw new IWDaoException(e);
 		}
-		return usuario;
 	}
 
 	/**

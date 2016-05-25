@@ -1,6 +1,6 @@
 package co.edu.udea.iw.webservices;
 
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,18 +21,25 @@ public class UsuarioWS {
 	@Autowired
 	UsuarioService usuarioService;
 
-	@PUT
-	@Path("Almacenar")
-	public void ingresarSistema(@QueryParam("login") String login,@QueryParam("clave") String clave){
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("Validar")
+	public String ingresarSistema(@QueryParam("login") String login,@QueryParam("clave") String clave){
+			Boolean respuesta;
 			try {
-				usuarioService.validar(login, clave);
+				respuesta = usuarioService.validar(login, clave);
+				if(respuesta){
+					return "";
+				}
 			} catch (IWDaoException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				//e.printStackTrace();
+				return e.getMessage();
 			} catch (IWServiceException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return e.getMessage();
 			}
+			return "Usuario no valido";
 
 	}
 	

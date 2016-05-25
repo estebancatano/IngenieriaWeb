@@ -25,7 +25,7 @@ public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 	 * Metodo que permite la insersion de un Rol
 	 */
 	@Override
-	public Rol insertar(Rol rol) throws IWDaoException {
+	public void insertar(Rol rol) throws IWDaoException {
 		
 		Session session = null;
 		try{
@@ -36,7 +36,6 @@ public class RolDAOImpl extends HibernateDaoSupport implements RolDAO {
 		}catch(HibernateException e){
 			throw new IWDaoException(e);
 		}
-		return rol;
 	}
 
 	/**
