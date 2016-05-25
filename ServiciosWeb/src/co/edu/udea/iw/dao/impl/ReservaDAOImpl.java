@@ -5,6 +5,7 @@ package co.edu.udea.iw.dao.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -24,7 +25,6 @@ import co.edu.udea.iw.exception.IWDaoException;
  * @version 1
  */
 public class ReservaDAOImpl extends HibernateDaoSupport implements ReservaDAO {
-
 	/* (non-Javadoc)
 	 * @see co.edu.udea.iw.dao.ReservaDAO#insertar(co.edu.udea.iw.dto.Reserva)
 	 */

@@ -41,6 +41,7 @@ public class DispositivoDAOImpl extends HibernateDaoSupport implements Dispositi
 			session.save(dispositivo);
 //			tx.commit();
 		}catch(HibernateException he){
+			
 			throw new IWDaoException(he);
 		}
 	}

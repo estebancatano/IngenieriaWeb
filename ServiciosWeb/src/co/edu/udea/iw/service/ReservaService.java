@@ -57,7 +57,7 @@ public class ReservaService {
 			throw new IWServiceException("El nombre de usuario del investigador no puede ser nulo");
 		}
 		if(fechaPrestamo == null){
-			throw new IWServiceException("La fecha para la que se quiere presta no puede ser nulo");
+			throw new IWServiceException("La fecha para la que se quiere prestar no puede ser nulo");
 		}
 		if(fechaPrestamo.before(new Date())){
 			throw new IWServiceException("La fecha no puede ser menor a la actual");
@@ -146,14 +146,20 @@ public class ReservaService {
 	 * @param usuario Nombre de usuario del investigador
 	 * @return Lista de Reservas del usuario indicado
 	 * @throws IWDaoException Manejador de excepciones personalizado
+	 * @throws IWServiceException 
 	 */
-	public List<Reserva> listarReservas(String usuario) throws IWDaoException {
+	public List<Reserva> listarReservas(String nombreUsuario) throws IWDaoException, IWServiceException {
 		/*Se crea la lista que será retornada*/
 		List<Reserva> lista = null;
-		
+		if(Validaciones.isTextoVacio(nombreUsuario)){
+			throw new IWServiceException("El usuario no puede ser nulo");
+		}
+		Usuario usuario = usuarioDao.obtener(nombreUsuario);
+		if(usuario == null){
+			throw new IWServiceException("El usuario no existe en la base de datos");
+		}
 		/*Se llena la lista con los dispositivos que no estén eliminados*/
 		lista = reservaDao.obtener("investigador", usuario);
-		
 		return lista;
 	}
 	
