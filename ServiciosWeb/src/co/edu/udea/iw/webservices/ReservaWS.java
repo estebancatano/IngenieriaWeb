@@ -28,8 +28,13 @@ import co.edu.udea.iw.webservices.dto.ReservaDTOWS;
 import javassist.tools.rmi.RemoteException;
 
 /**
- * @author asus
- *
+ * Clase que gestiona las peticiones que vienen desde la interfaz de usuario a
+ * la lógica del negocio
+ * 
+ * @author Esteban CataÃ±o
+ * @author Vanesa Guzman
+ * @author Jeison Triana
+ * @version 1
  */
 @Component
 @Path("Reserva")

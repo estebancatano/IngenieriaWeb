@@ -24,7 +24,7 @@ import co.edu.udea.iw.dto.Dispositivo;
  * Clase que gestiona las peticiones que vienen desde la interfaz de usuario a
  * la lógica del negocio
  * 
- * @author Esteban CataÃ±o
+ * @author Esteban Cataño
  * @author Vanesa Guzman
  * @author Jeison Triana
  * @version 1
@@ -50,7 +50,7 @@ public class DispositivoWS {
 	 * @throws IWDaoException
 	 */
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	@Path("Almacenar")
 	public String almacenarDispositivo(@QueryParam("descripcion") String descripcion,
 			@QueryParam("tipo") String tipo, @QueryParam("marca") String marca, @QueryParam("valor") String valor,
@@ -76,13 +76,13 @@ public class DispositivoWS {
 	 * @throws IWDaoException
 	 */
 	@PUT
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	@Path("Eliminar")
 	public String eliminarDispositivo(@QueryParam("codigo") Long codigo,
 			@QueryParam("administrador") String administrador) {
 		try {
 			dispositivoService.eliminar(codigo, administrador);
-			return "Eliminado exitoso";
+			return "";
 		} catch (IWServiceException e) {
 			return e.getMessage();
 		} catch (IWDaoException e) {

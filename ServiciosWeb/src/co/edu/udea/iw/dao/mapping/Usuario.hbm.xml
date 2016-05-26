@@ -20,7 +20,7 @@
         <property name="nombres" type="java.lang.String">
             <column name="nombres" length="45" not-null="true" />
         </property>
-        <many-to-one name="rol" class="co.edu.udea.iw.dto.Rol" 
+        <many-to-one name="rol" class="co.edu.udea.iw.dto.Rol" lazy="false"
         		fetch="join">
             <column name="rol" precision="3" not-null="true"/>
         </many-to-one>
