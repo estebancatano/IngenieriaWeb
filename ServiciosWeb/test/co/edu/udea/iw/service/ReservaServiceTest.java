@@ -6,6 +6,7 @@ package co.edu.udea.iw.service;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.util.dates.UtilFecha;
+import co.edu.udea.iw.dto.Reserva;
 
 /**
  * Clase para realizar las pruebas unitarias a ReservaService
@@ -51,6 +53,18 @@ public class ReservaServiceTest {
 		try{
 			reservaService.actualizarReserva(Long.valueOf(1), "admin", "NO");
 			assertTrue(true);
+		}catch(Exception e){
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void testListarReserva(){
+		List<Reserva> reservas;
+		try{
+			reservas = reservaService.listarReservas("inves");
+			assertTrue(!reservas.isEmpty());
 		}catch(Exception e){
 			e.printStackTrace();
 			fail(e.getMessage());

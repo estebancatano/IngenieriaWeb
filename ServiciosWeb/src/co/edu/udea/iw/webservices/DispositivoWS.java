@@ -19,6 +19,17 @@ import co.edu.udea.iw.exception.IWServiceException;
 import co.edu.udea.iw.service.DispositivoService;
 import co.edu.udea.iw.webservices.dto.DispositivoDTOWS;
 import co.edu.udea.iw.dto.Dispositivo;
+
+/**
+ * Clase que gestiona las peticiones que vienen desde la interfaz de usuario a
+ * la lógica del negocio
+ * 
+ * @author Esteban CataÃ±o
+ * @author Vanesa Guzman
+ * @author Jeison Triana
+ * @version 1
+ */
+
 @Component
 @Path("Dispositivo")
 public class DispositivoWS {
@@ -26,64 +37,103 @@ public class DispositivoWS {
 	@Autowired
 	DispositivoService dispositivoService;
 
+	/**
+	 * Recibe la petición para almacenar un dispositivo
+	 * 
+	 * @param descripcion
+	 * @param tipo
+	 * @param marca
+	 * @param valor
+	 * @param estado
+	 * @param observacion
+	 * @throws IWServiceException
+	 * @throws IWDaoException
+	 */
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("Almacenar")
-	public void almacenarDispositivo(@QueryParam("codigo") Long codigo, @QueryParam("descripcion") String descripcion,
+	public String almacenarDispositivo(@QueryParam("descripcion") String descripcion,
 			@QueryParam("tipo") String tipo, @QueryParam("marca") String marca, @QueryParam("valor") String valor,
-			@QueryParam("estado") String estado, @QueryParam("observacion") String observacion)
-			throws IWServiceException, IWDaoException {
+			@QueryParam("estado") String estado, @QueryParam("observacion") String observacion) {
 
 		try {
-			dispositivoService.guardar(codigo, descripcion, tipo, marca, valor, estado, observacion);
+			dispositivoService.guardar(descripcion, tipo, marca, valor, estado, observacion);
+			return "";
 		} catch (IWServiceException e) {
-
-			throw new IWServiceException(e);
+			return e.getMessage();
 		} catch (IWDaoException e) {
-
-			throw new IWDaoException(e);
+			return e.getMessage();
 		}
+
 	}
 
+	/**
+	 * Recibe la petición para eliminar un dispositivo
+	 * 
+	 * @param codigo
+	 * @param administrador
+	 * @throws IWServiceException
+	 * @throws IWDaoException
+	 */
 	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("Eliminar")
-	public void eliminarDispositivo(@QueryParam("codigo") Long codigo,
-			@QueryParam("administrador") String administrador) throws IWServiceException, IWDaoException {
+	public String eliminarDispositivo(@QueryParam("codigo") Long codigo,
+			@QueryParam("administrador") String administrador) {
 		try {
 			dispositivoService.eliminar(codigo, administrador);
+			return "Eliminado exitoso";
 		} catch (IWServiceException e) {
-
-			throw new IWServiceException(e);
+			return e.getMessage();
 		} catch (IWDaoException e) {
-
-			throw new IWDaoException(e);
+			return e.getMessage();
 		}
 
 	}
 
+	/**
+	 * Recibe la petición para actualizar un dispositivo
+	 * 
+	 * @param codigo
+	 * @param descripcion
+	 * @param tipo
+	 * @param marca
+	 * @param valor
+	 * @param estado
+	 * @param observacion
+	 * @throws IWServiceException
+	 * @throws IWDaoException
+	 */
 	@PUT
-	public void actualizarDispositivo(@QueryParam("codigo") Long codigo, @QueryParam("descripcion") String descripcion,
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("Actualizar")
+	public String actualizarDispositivo(@QueryParam("codigo") Long codigo, @QueryParam("descripcion") String descripcion,
 			@QueryParam("tipo") String tipo, @QueryParam("marca") String marca, @QueryParam("valor") String valor,
 			@QueryParam("estado") String estado, @QueryParam("observacion") String observacion)
-			throws IWServiceException, IWDaoException {
+			{
 
 		try {
 			dispositivoService.actualizar(codigo, descripcion, tipo, marca, valor, estado, observacion);
+			return "Actualización exitosa";
 		} catch (IWServiceException e) {
-
-			throw new IWServiceException(e);
-		} catch (IWDaoException e) {
-
-			throw new IWDaoException(e);
-		}
+			return e.getMessage();
+			} catch (IWDaoException e) {
+				return e.getMessage();		}
 	}
 
+	/**
+	 * Recibe la petición para listar los dispositivos
+	 * 
+	 * @return lista de dispositivos que no han sido eliminados lógicamente
+	 * @throws IWDaoException
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("Listar")
 	public List<DispositivoDTOWS> listarDispositivos() throws IWDaoException {
 		List<DispositivoDTOWS> lista = new ArrayList<DispositivoDTOWS>();
-		try{
-			for(Dispositivo dispositivo : dispositivoService.obtener()){
+		try {
+			for (Dispositivo dispositivo : dispositivoService.obtener()) {
 				DispositivoDTOWS disp = new DispositivoDTOWS();
 				disp.setCodigo(dispositivo.getCodigo());
 				disp.setDescripcion(dispositivo.getDescripcion());
@@ -96,27 +146,32 @@ public class DispositivoWS {
 			}
 		} catch (IWDaoException e) {
 
-			throw new IWDaoException(e);
+			return null;
 		}
 		return lista;
 	}
-
+/**
+ * Recibe la petición de consultar el dispositivo
+ * @param codigo del dispositivo
+ * @return el dispositivo o nul en caso de no encontrarlo
+ * @throws IWServiceException
+ * @throws IWDaoException
+ */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("Consultar")
-	public Dispositivo consultarDispositivo(@QueryParam("cod") Long cod) throws IWServiceException, IWDaoException {
-		
+	public Dispositivo consultarDispositivo(@QueryParam("codigo") Long cod) throws IWServiceException, IWDaoException {
+
 		try {
 			return dispositivoService.obtener(cod);
-			
-		}catch (IWServiceException e) {
 
-			throw new IWServiceException(e);
-		} catch (IWDaoException e) {
+		} catch (IWServiceException e) {
 
-			throw new IWDaoException(e);
+			return null;
+			} catch (IWDaoException e) {
+
+			return null;
 		}
-		
 
 	}
 }

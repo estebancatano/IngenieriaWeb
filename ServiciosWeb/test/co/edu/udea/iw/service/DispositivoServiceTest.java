@@ -2,6 +2,10 @@ package co.edu.udea.iw.service;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +24,13 @@ import co.edu.udea.iw.exception.IWServiceException;
 public class DispositivoServiceTest {
 
 	@Autowired
-	DispositivoService DispositivoService;
+	DispositivoService dispositivoService;
 
 	@Test
 	public void testGuardar() {
 
 		try {
-			DispositivoService.guardar(984L, "LALAL", "TABLET", "SAMSUNG", "1234556", "DISPONIBLE", "HOLA");
+			dispositivoService.guardar("LALAL", "TABLET", "SAMSUNG", "1234556", "DISPONIBLE", "HOLA");
 		} catch (IWDaoException e) {
 			e.printStackTrace();
 			fail(e.getMessage());
@@ -36,4 +40,63 @@ public class DispositivoServiceTest {
 		}
 
 	}
-}
+	
+	@Test 
+	public void testEliminar(){
+		try {
+			dispositivoService.eliminar(Long.valueOf(1), "admin");
+					
+		} catch (IWDaoException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		} catch (IWServiceException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+	
+	@Test 
+	public void testActualizar(){
+		try {
+			dispositivoService.actualizar(Long.valueOf(1), "JOJOJ", "JAJAJA", "ÑLKJ", "JOJOJ", "DISPONIBLE", "NINGUNA");					
+		} catch (IWDaoException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		} catch (IWServiceException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
+	@Test 
+	public void testObtener(){
+		Dispositivo d =null;
+		try {
+			d = dispositivoService.obtener(Long.valueOf(1));
+			
+			} catch (IWDaoException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		} catch (IWServiceException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+		assertNotNull(d);
+	}
+	
+	
+	@Test 
+	public void testObtenerLista(){
+		List<Dispositivo> lista = null;
+
+		try {
+			lista = dispositivoService.obtener();
+			
+			} catch (IWDaoException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+		assertNotNull(lista);
+		
+	}
+	
+	}

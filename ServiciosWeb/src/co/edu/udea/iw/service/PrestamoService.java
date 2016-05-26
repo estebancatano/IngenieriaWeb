@@ -2,6 +2,8 @@ package co.edu.udea.iw.service;
 
 import java.util.Date;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import co.edu.udea.iw.dao.DispositivoDAO;
 import co.edu.udea.iw.dao.PrestamoDAO;
 import co.edu.udea.iw.dao.ReservaDAO;
@@ -15,6 +17,7 @@ import co.edu.udea.iw.exception.IWServiceException;
 import co.edu.udea.iw.util.dates.UtilFecha;
 import co.edu.udea.iw.util.validations.Validaciones;
 
+@Transactional
 public class PrestamoService {
 	PrestamoDAO prestamoDao;
 	ReservaDAO reservaDao;

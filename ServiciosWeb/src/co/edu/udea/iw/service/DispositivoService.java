@@ -64,17 +64,11 @@ public class DispositivoService {
 	 * @throws IWDaoException
 	 */
 
-	public void guardar(Long codigo, String descripcion, String tipo, String marca, String valor, String estado, String observacion)
+	public void guardar(String descripcion, String tipo, String marca, String valor, String estado, String observacion)
 			throws IWServiceException, IWDaoException {
 
 		/*Se verifica que cada uno de los parámetros esten correctamente diligenciados*/
 		
-		if (codigo == null) {
-			throw new IWServiceException("El codigo de dispositivo no puede ser nulo");
-		}
-		if (codigo.equals("")) {
-			throw new IWServiceException("El código ingresado no debe ser una cadena vacía");
-		}
 
 		/*if (Validaciones.isTextoVacio(descripcion)) {
 			descripcion = "";
@@ -98,18 +92,10 @@ public class DispositivoService {
 		}*/
 		
 		
-		/*Se verifica que el código del dispositivo no exista*/
-		Dispositivo existe;
-		existe = dispositivoDao.obtener(codigo);
-		if (existe != null) {
-			throw new IWDaoException("El código: " + codigo + " del dispositivo ingresado ya existe en el sistema");
-		}
-		
 		/*Se crea un objeto dispositivo*/
 		Dispositivo dispositivo = new Dispositivo();
 
 		/*Se llena el objeto con la nueva información sumisnistrada*/
-		dispositivo.setCodigo(codigo);
 		dispositivo.setDescripcion(descripcion);
 		dispositivo.setTipo(tipo);
 		dispositivo.setMarca(marca);
