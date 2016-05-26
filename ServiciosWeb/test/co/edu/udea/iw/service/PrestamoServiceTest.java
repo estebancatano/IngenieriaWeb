@@ -5,8 +5,6 @@ package co.edu.udea.iw.service;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,46 +12,46 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.udea.iw.util.dates.UtilFecha;
-
 /**
- * Clase para realizar las pruebas unitarias a ReservaService
+ * Clase para realizar las pruebas unitarias a PrestamoService
  * @author Esteban Cataño
  * @author Vanesa Guzman
  * @author Jeison Triana
  * @version 1
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration(locations = "classpath:configuracionSpring.xml")
-public class ReservaServiceTest {
+public class PrestamoServiceTest {
 	@Autowired
-	ReservaService reservaService;
+	PrestamoService prestamoService;
 	
 	/**
-	 * Test method for {@link co.edu.udea.iw.service.ReservaService#agregarReserva(java.lang.Long, java.lang.String, java.util.Date, java.lang.Integer)}.
+	 * Test method for {@link co.edu.udea.iw.service.PrestamoService#registrar(java.lang.Long, java.lang.String)}.
 	 */
 	@Test
-	public void testAgregarReserva() {
+	public void testRegistrar() {
 		try{
-			reservaService.agregarReserva(Long.valueOf(1), "inves", 
-					UtilFecha.sumarRestarDiasFecha(new Date(), 4), 2);
+			prestamoService.registrar(Long.valueOf(1), "admin");
 			assertTrue(true);
 		}catch(Exception e){
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
-	
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.service.PrestamoService#devolver(java.lang.Long, java.lang.String)}.
+	 */
 	@Test
-	public void testActualizarReserva(){
+	public void testDevolver() {
 		try{
-			reservaService.actualizarReserva(Long.valueOf(1), "admin", "NO");
+			prestamoService.devolver(Long.valueOf(1), "admin");
 			assertTrue(true);
 		}catch(Exception e){
 			e.printStackTrace();
 			fail(e.getMessage());
 		}
 	}
+
 }

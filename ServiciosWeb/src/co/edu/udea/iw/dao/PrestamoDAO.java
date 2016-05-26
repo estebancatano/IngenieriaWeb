@@ -50,7 +50,7 @@ public interface PrestamoDAO {
 	 * @return Objeto Prestamo con la información del prestamo consultado
 	 * @throws IWDaoException Manejador de excepciones personalizado para los daos
 	 */
-	public Prestamo obtener(String codigo) throws IWDaoException;
+	public Prestamo obtener(Long codigo) throws IWDaoException;
 	/**
 	 * Método para obtener los prestamos por medio de una columna diferente a la clave primaria
 	 * @param nombreColumna Nombre de la columna por la cual se desea buscar

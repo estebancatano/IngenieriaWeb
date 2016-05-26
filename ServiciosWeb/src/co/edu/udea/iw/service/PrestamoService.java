@@ -73,14 +73,11 @@ public class PrestamoService {
 
 	public void registrar(Long codigoReserva, String nombreUsuario) throws IWDaoException, IWServiceException {
 
-		if (codigoReserva == null) {
-			throw new IWServiceException("El codigo de reserva no puede ser nulo");
-		}
-		if (codigoReserva.equals("")) {
-			throw new IWServiceException("El codigo ingresado no puede ser una cadena vacia");
+		if (Validaciones.isTextoVacio(Long.toString(codigoReserva))) {
+			throw new IWServiceException("El codigo de reserva no puede ser nulo, ni una cadena vacia");
 		}
 		if (Validaciones.isTextoVacio(nombreUsuario)) {
-			throw new IWServiceException("El nombre de usuario no puede ser nulo, ni una cadena vacia");
+			throw new IWServiceException("El nombre de usuario del administrador no puede ser nulo, ni una cadena vacia");
 		}
 		/* Se crea un objeto prestamo */
 		Prestamo prestamo = new Prestamo();
@@ -90,16 +87,14 @@ public class PrestamoService {
 
 		/* Se obtiene la reserva de acuerdo al código ingresado por parametro */
 		reserva = reservaDao.obtener(codigoReserva);
-
-		
-		
+		if(reserva == null){
+			throw new IWServiceException("La reserva con el codigo ingresado no existe");
+		}
 		/* Se envia a prestamo toda la informacion de la reserva */
 		prestamo.setCodigoReserva(reserva);
-
 		prestamo.setFechaEntrega(new Date());
-
 		/*
-		 * Se obtiene el usuario que realiza la entrega del dispositivo y se
+		 * Se obtiene el administrador que realiza la entrega del dispositivo y se
 		 * almacena en prestamo
 		 */
 		Usuario usuario;
@@ -107,12 +102,10 @@ public class PrestamoService {
 		if(usuario == null){
 			throw new IWServiceException("El usuario no existe");
 		}
-		
 		if(!"ADMINISTRADOR".equals(usuario.getRol().getNombre())){
 			throw new IWServiceException("El usuario no es administrador");
 		}
 		prestamo.setAdministradorEntrega(usuario);
-
 		prestamo.setFechaMaximaDevolucion(
 				UtilFecha.sumarRestarHorasFecha(prestamo.getFechaEntrega(), reserva.getCantidadHoras()));
 
@@ -125,24 +118,22 @@ public class PrestamoService {
 	public void devolver(Long codigoPrestamo, String nombreUsuario) throws IWDaoException, IWServiceException {
 
 		/* Se realiza las validaciones pertinentes */
-		if (codigoPrestamo == null) {
-			throw new IWServiceException("El codigo de reserva no puede ser nulo");
-		}
-		if (codigoPrestamo.equals("")) {
-			throw new IWServiceException("El codigo ingresado no puede ser una cadena vacia");
+		if (Validaciones.isTextoVacio(codigoPrestamo.toString())) {
+			throw new IWServiceException("El codigo del prestamo no puede ser nulo, ni una cadena vacia");
 		}
 		if (Validaciones.isTextoVacio(nombreUsuario)) {
 			throw new IWServiceException("El nombre de usuario no puede ser nulo, ni una cadena vacia");
 		}
-
 		Prestamo prestamo;
-
 		/*
-		 * Se guarda el prestamo correspondiente al codigo ingresado por
+		 * Se obtiene el prestamo correspondiente al codigo ingresado por
 		 * parametro
 		 */
-		prestamo = prestamoDao.obtener(codigoPrestamo.toString());
-
+		prestamo = prestamoDao.obtener(codigoPrestamo);
+		if(prestamo == null){
+			throw new IWServiceException("El prestamo con el código ingresado no existe");
+		}
+		
 		/* Se llena la informacion correspondiente a la devolucion */
 
 		/*
@@ -151,7 +142,6 @@ public class PrestamoService {
 		 */
 		Usuario usuario;
 		usuario = usuarioDao.obtener(nombreUsuario);
-		prestamo.setAdministradorDevolucion(usuario);
 		if(usuario == null){
 			throw new IWServiceException("El usuario no existe");
 		}
@@ -160,10 +150,13 @@ public class PrestamoService {
 			throw new IWServiceException("El usuario no es administrador");
 		}
 		
-		/*Se agrega la fecha en la que devuelve el dispositivo*/
+		/*Se agrega el usuario y la fecha en la que devuelve el dispositivo*/
+		prestamo.setAdministradorDevolucion(usuario);
 		prestamo.setFechaDevolucion(new Date());
-		
-		usuarioService.sancionar();
+		/*if(prestamo.getFechaDevolucion().before(prestamo.getFechaEntrega())){
+			throw new IWServiceException("No se puede devolver un dispositivo que no se ha prestado");
+		}*/		
+		usuarioService.sancionar(prestamo, usuario);
 		
 		prestamoDao.modificar(prestamo);
 	}

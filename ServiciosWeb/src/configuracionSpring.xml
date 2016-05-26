@@ -80,6 +80,7 @@
 	<bean id="usuarioService" class="co.edu.udea.iw.service.UsuarioService">
 	    <property name="usuarioDao" ref="usuarioDao"></property>
 	    <property name="reservaDao" ref="reservaDao"></property>
+	    <property name="rolDao" ref="rolDao"></property>
 	</bean>
 	
 	<bean id="prestamoService" class="co.edu.udea.iw.service.PrestamoService">

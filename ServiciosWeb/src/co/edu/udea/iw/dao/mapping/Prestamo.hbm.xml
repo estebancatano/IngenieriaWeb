@@ -4,7 +4,7 @@
 <!-- Generated 5/05/2016 09:11:04 AM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="co.edu.udea.iw.dto.Prestamo" table="Prestamo">
-        <id name="codigo" type="java.lang.Integer">
+        <id name="codigo" type="java.lang.Long">
             <column name="codigo" precision="15"/>
             <generator class="increment" />
         </id>

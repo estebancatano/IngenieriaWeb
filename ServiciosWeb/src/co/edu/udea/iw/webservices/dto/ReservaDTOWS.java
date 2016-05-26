@@ -11,8 +11,12 @@ import co.edu.udea.iw.dto.Dispositivo;
 import co.edu.udea.iw.dto.Usuario;
 
 /**
- * @author asus
- *
+ * Clase DTO para los servicios web de Reserva
+ * 
+ * @author Esteban Cataño
+ * @author Vanesa Guzman
+ * @author Jeison Triana
+ * @version 1
  */
 @XmlRootElement
 public class ReservaDTOWS {
