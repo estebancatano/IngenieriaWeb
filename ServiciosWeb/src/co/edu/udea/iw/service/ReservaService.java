@@ -129,7 +129,7 @@ public class ReservaService {
 		if(usuario == null){
 			throw new IWServiceException("El usuario no existe");
 		}
-		if("ADMINISTRADOR".equals(usuario.getRol().getNombre())){
+		if(!"ADMINISTRADOR".equals(usuario.getRol().getNombre())){
 			throw new IWServiceException("El usuario no posee el rol de administrador");
 		}
 		reserva = reservaDao.obtener(codigoReserva);

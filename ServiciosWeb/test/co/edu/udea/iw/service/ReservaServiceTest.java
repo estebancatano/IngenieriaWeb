@@ -44,4 +44,14 @@ public class ReservaServiceTest {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testActualizarReserva(){
+		try{
+			reservaService.actualizarReserva(Long.valueOf(1), "root", "NO");
+		}catch(Exception e){
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+	}
 }
