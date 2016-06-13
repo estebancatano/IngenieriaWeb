@@ -63,7 +63,7 @@ public class ReservaServiceTest {
 	public void testListarReserva(){
 		List<Reserva> reservas;
 		try{
-			reservas = reservaService.listarReservas("inves");
+			reservas = reservaService.listarReservasUsuario("inves");
 			assertTrue(!reservas.isEmpty());
 		}catch(Exception e){
 			e.printStackTrace();

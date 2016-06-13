@@ -90,7 +90,7 @@ public class DispositivoServiceTest {
 
 		try {
 			lista = dispositivoService.obtener();
-			
+			System.out.println(lista.size());
 			} catch (IWDaoException e) {
 			e.printStackTrace();
 			fail(e.getMessage());

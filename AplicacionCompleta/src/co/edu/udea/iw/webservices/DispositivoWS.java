@@ -145,7 +145,6 @@ public class DispositivoWS {
 				lista.add(disp);
 			}
 		} catch (IWDaoException e) {
-
 			return null;
 		}
 		return lista;

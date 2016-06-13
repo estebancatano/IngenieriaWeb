@@ -148,7 +148,7 @@ public class ReservaService {
 	 * @throws IWDaoException Manejador de excepciones personalizado
 	 * @throws IWServiceException 
 	 */
-	public List<Reserva> listarReservas(String nombreUsuario) throws IWDaoException, IWServiceException {
+	public List<Reserva> listarReservasUsuario(String nombreUsuario) throws IWDaoException, IWServiceException {
 		/*Se crea la lista que será retornada*/
 		List<Reserva> lista = null;
 		if(Validaciones.isTextoVacio(nombreUsuario)){
@@ -160,6 +160,23 @@ public class ReservaService {
 		}
 		/*Se llena la lista con los dispositivos que no estén eliminados*/
 		lista = reservaDao.obtener("investigador", usuario);
+		return lista;
+	}
+	
+	/**
+	 * Verifica que la reserva no se solape con otras reserva al mismo dispositivo
+	 * @param dispositivo Dispositivo a reservar
+	 * @param fechaPrestamo Fecha para la que se quiere prestar el dispositivo
+	 * @param cantidadHoras N�mero de horas que se desea prestar el dispositivo
+	 * @return true si el dispositivo se puede prestar en lapso de tiempo indicado
+	 * @throws IWDaoException Manejador de excepciones personalizado
+	 */
+	
+	public List<Reserva> listarReservas() throws IWDaoException, IWServiceException {
+		/*Se crea la lista que será retornada*/
+		List<Reserva> lista = null;
+		/*Se llena la lista con los dispositivos que no estén eliminados*/
+		lista = reservaDao.obtener();
 		return lista;
 	}
 	

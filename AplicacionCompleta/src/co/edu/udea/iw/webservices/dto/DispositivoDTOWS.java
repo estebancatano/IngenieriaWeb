@@ -53,7 +53,4 @@ public class DispositivoDTOWS {
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
 	}
-
-	
-	
 }

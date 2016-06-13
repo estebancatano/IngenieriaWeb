@@ -108,13 +108,37 @@ public class ReservaWS {
 	 * @param usuario Nombre de usuario del que se quiere obtener las rservas
 	 * @return Lista de reservas del usuario ingresado
 	 */
+	@Path("ListarReservasUsuario")
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	public List<ReservaDTOWS> listarReservasUsuario(@QueryParam("usuario")String usuario){
+		List<ReservaDTOWS> listaReservas = new ArrayList<>();
+		try{
+			for(Reserva reserva : reservaService.listarReservasUsuario(usuario)){
+				ReservaDTOWS reservaDTOWS = new ReservaDTOWS();
+				reservaDTOWS.setCodigo(reserva.getCodigo());
+				reservaDTOWS.setDispositivo(reserva.getDispositivo());
+				reservaDTOWS.setInvestigador(reserva.getInvestigador());
+				reservaDTOWS.setFechaSolicitud(reserva.getFechaSolicitud());
+				reservaDTOWS.setFechaPrestamo(reserva.getFechaPrestamo());
+				reservaDTOWS.setCantidadHoras(reserva.getCantidadHoras());
+				reservaDTOWS.setAprobado(reserva.getAprobado());
+				reservaDTOWS.setAdministradorAprueba(reserva.getAdministradorAprueba());
+				listaReservas.add(reservaDTOWS);
+			}
+		}catch(IWServiceException | IWDaoException e){
+			return null;
+		}
+		return listaReservas;
+	}
+	
 	@Path("Listar")
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public List<ReservaDTOWS> listarReservas(@QueryParam("usuario")String usuario){
+	public List<ReservaDTOWS> listarReservas(){
 		List<ReservaDTOWS> listaReservas = new ArrayList<>();
 		try{
-			for(Reserva reserva : reservaService.listarReservas(usuario)){
+			for(Reserva reserva : reservaService.listarReservas()){
 				ReservaDTOWS reservaDTOWS = new ReservaDTOWS();
 				reservaDTOWS.setCodigo(reserva.getCodigo());
 				reservaDTOWS.setDispositivo(reserva.getDispositivo());
