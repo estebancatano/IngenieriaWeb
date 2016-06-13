@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 var app = angular.module('prestamos', [ 'ngRoute', 'ngCookies', 'prestamos.controller', 'prestamos.service' ]);
 
 app.config([ '$routeProvider', function($routeProvider) {
@@ -45,5 +41,3 @@ app.config([ '$routeProvider', function($routeProvider) {
 	});
 
 } ]);
-
-

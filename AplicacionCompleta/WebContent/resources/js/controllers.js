@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 
 var app = angular.module('prestamos.controller',[]);
 
@@ -13,7 +9,9 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies) {
 	$scope.password = "";
 
 	$scope.login = function() {
-		Login.validar($scope.user, $scope.password).sucess(function(data) {
+		console.log("Login");
+		Login.validar($scope.user, $scope.password).success(function(data) {
+			console.log("Data: \n" + data);
 			if (data == "") {
 				alert(data);
 			} else {
