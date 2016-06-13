@@ -41,3 +41,17 @@ app.config([ '$routeProvider', function($routeProvider) {
 	});
 
 } ]);
+
+
+
+//se ejecuta cuando se inicia el modulo angular
+app.run(function($rootScope, Factory){
+  //Se ejecuta cada vez que cambia la ruta
+  $rootScope.$on('$routeChangeStart', function()
+  {
+      //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
+      //la cu�l hemos inyectado en la acci�n run de la aplicaci�n
+      Factory.validarEstado();
+  });
+});
+
