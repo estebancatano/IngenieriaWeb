@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4/05/2016 05:14:31 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Dispositivo" table="Dispositivo">
+        <id name="codigo" type="java.lang.Long">
+            <column name="codigo" precision="15"/>
+            <generator class="increment" />
+        </id>
+        <property name="descripcion" type="java.lang.String">
+            <column name="descripcion" length="100"/>
+        </property>
+        <property name="tipo" type="java.lang.String">
+            <column name="tipo" length="20" not-null="true"/>
+        </property>
+        <property name="marca" type="java.lang.String">
+            <column name="marca" length="30" />
+        </property>
+        <property name="valor" type="java.lang.String">
+            <column name="valor" length="9"/>
+        </property>
+        <property name="fechaAdquisicion" type="java.util.Date">
+            <column name="fechaAdquisicion" />
+        </property>
+        <property name="eliminado" type="java.lang.String">
+            <column name="eliminado" length="2"/>
+        </property>
+        <property name="fechaEliminacion" type="java.util.Date">
+            <column name="fechaEliminacion" />
+        </property>
+        <many-to-one name="administradorElimina" class="co.edu.udea.iw.dto.Usuario"
+        		fetch="join">
+            <column name="administradorElimina" length="45" />
+        </many-to-one>
+        <property name="estado" type="java.lang.String">
+            <column name="estado" length="10" />
+        </property>
+        <property name="observacion" type="java.lang.String">
+            <column name="observacion" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>
