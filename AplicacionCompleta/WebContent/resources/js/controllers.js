@@ -25,3 +25,12 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies,Fa
 	};
 
 });
+
+//Controlador de indexInvestigador
+app.controller('controllerInvestigador', function($scope, Login, $location, $cookies,Factory) {
+
+	$scope.user = $cookies.nombreUsuario;
+	$scope.rol = $cookies.rol;
+
+	
+});
