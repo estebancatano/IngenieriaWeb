@@ -1,4 +1,5 @@
 var URL_LOGIN = 'http://localhost:8080/SistemaPrestamos/rest/Usuario/Validar';
+var URL_DISPOSITIVO = 'http://localhost:8080/SistemaPrestamos/rest/Dispositivo/Listar';
 
 var app = angular.module('prestamos.service', []);
 
@@ -17,6 +18,18 @@ app.service('Login', function($http) {
 		});
 	}
 
+});
+
+app.service('Dispositivo', function($http) {
+	this.obtenerDispositivos = function() {
+		console.log("Servicio");
+		console.log("Usuario: " + usuario);
+		console.log("Contrasena: " + contrasena);
+		return $http({
+			method : 'GET',
+			url : URL_DISPOSITIVO
+		});
+	}
 });
 
 app.factory('Factory', function($cookies, $location) {

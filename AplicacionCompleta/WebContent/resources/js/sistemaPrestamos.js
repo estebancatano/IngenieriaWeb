@@ -18,7 +18,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	// Ruta para: Listar dispositivos
 	$routeProvider.when('/listaDispositivos', {
 		templateUrl : 'investigador/listarDispositivos.html',
-		controller : 'controllerInvestigador'
+		controller : 'controllerListaDispositivos'
 	});
 
 	// Ruta para: Solicitar una reserva

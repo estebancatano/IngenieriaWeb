@@ -1,24 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>Neurociencias - Servicio de reservas y prestamos</title>
-
 <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-<link href="../../Plantilla/css/bootstrap.min.css" rel="stylesheet">
+<link href="../Plantilla/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../../Plantilla/css/freelancer.css" rel="stylesheet">
+<link href="../Plantilla/css/freelancer.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="../../Plantilla/font-awesome/css/font-awesome.min.css"
+<link href="../Plantilla/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet" type="text/css">
@@ -26,13 +13,27 @@
 	href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link href="../../resources/css/indexUsuario.css"
+<link href="../resources/css/indexUsuario.css"
 	rel="stylesheet" type="text/css">
+		<!-- jQuery -->
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../Plantilla/js/bootstrap.min.js"></script>
 
-</head>
+	<!-- Plugin JavaScript -->
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="../Plantilla/js/classie.js"></script>
+	<script src="../Plantilla/js/cbpAnimatedHeader.js"></script>
 
-<body id="page-top" class="index">
+	<!-- Contact Form JavaScript -->
+	<script src="../Plantilla/js/jqBootstrapValidation.js"></script>
+	<script src="../Plantilla/js/contact_me.js"></script>
 
+	<!-- Custom Theme JavaScript -->
+	<script src="../Plantilla/js/freelancer.js"></script>
+
+<div>
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -44,17 +45,18 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#page-top" >{{user}}<small> {{rol}}</small></a>
-				
+				<span class="navbar-brand" >{{user}}<small> {{rol}}</small></span>
+<!-- 				href="#page-top" -->
 			</div>
 
 			<!-- Collect thed nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="hidden"><a href="#page-top"></a></li>
-					<li class="page-scroll"><a href="#portfolio">Reservar</a></li>
-
+<!-- 					<li class="hidden"><a href="#page-top"></a></li> -->
+  					<li class="page-scroll"><a href="#listaDispositivos">Reservar</a></li>
+<!-- 					<li class="page-scroll"><a ng-click="mostrarDispositivos()">Reservar</a></li> -->
+<!-- 					<button class="w3-btn w3-green" ng-click="mostrarDispositivos()">Reservar</button> -->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -67,7 +69,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<img class="img-responsive" src="../../Plantilla/img/Brain.png"
+					<img class="img-responsive" src="../Plantilla/img/Brain.png"
 						alt="">
 					<div class="intro-text">
 						<span class="name">Bienvenido</span>
@@ -103,27 +105,4 @@
 			</div>
 		</div>
 	</section>
-
-
-	<!-- jQuery -->
-	<script src="../../Plantilla/js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../../Plantilla/js/bootstrap.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-	<script
-		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="../../Plantilla/js/classie.js"></script>
-	<script src="../../Plantilla/js/cbpAnimatedHeader.js"></script>
-
-	<!-- Contact Form JavaScript -->
-	<script src="../../Plantilla/js/jqBootstrapValidation.js"></script>
-	<script src="../../Plantilla/js/contact_me.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../../Plantilla/js/freelancer.js"></script>
-
-</body>
-
-</html>
+</div>

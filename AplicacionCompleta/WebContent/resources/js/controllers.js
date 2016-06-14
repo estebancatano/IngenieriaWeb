@@ -27,10 +27,30 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies,Fa
 });
 
 //Controlador de indexInvestigador
-app.controller('controllerInvestigador', function($scope, Login, $location, $cookies,Factory) {
-
+app.controller('controllerInvestigador', function($scope, $location) {
 	$scope.user = $cookies.nombreUsuario;
-	$scope.rol = $cookies.rol;
-
-	
+	$scope.rol = 'Investigador';
+	$scope.mostrarDispositivos = function(){
+		$location.url('/listaDispositivos');
+	};
+});
+//Controlador de listarDispositivos
+app.controller('controllerListaDispositivos', function($scope, Dispositivo, $location, $cookies,Factory) {
+		$scope.user = $cookies.nombreUsuario;
+		$scope.rol = 'Investigador';
+		Dispositivo.obtenerDispositivos().success(function(data) {	
+			var lista = data.dispositivoDTOWS;
+			var l = lista.length;
+			console.log(lista);
+			console.log(l);
+			console.log(typeof(lista));
+			if(lista.length > 1){
+				$scope.dispositivos = lista;
+			}else{
+				var arr = [];
+				arr.push(lista);
+				console.log(arr);
+				$scope.dispositivos = arr;
+			}
+		});
 });
