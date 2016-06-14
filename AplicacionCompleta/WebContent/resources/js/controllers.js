@@ -27,7 +27,7 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies,Fa
 });
 
 //Controlador de indexInvestigador
-app.controller('controllerInvestigador', function($scope, $location) {
+app.controller('controllerInvestigador', function($scope, $location, $cookies) {
 	$scope.user = $cookies.nombreUsuario;
 	$scope.rol = 'Investigador';
 	$scope.mostrarDispositivos = function(){

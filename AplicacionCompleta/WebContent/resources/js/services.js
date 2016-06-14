@@ -22,9 +22,7 @@ app.service('Login', function($http) {
 
 app.service('Dispositivo', function($http) {
 	this.obtenerDispositivos = function() {
-		console.log("Servicio");
-		console.log("Usuario: " + usuario);
-		console.log("Contrasena: " + contrasena);
+		console.log("Servicio Dispositivo");
 		return $http({
 			method : 'GET',
 			url : URL_DISPOSITIVO

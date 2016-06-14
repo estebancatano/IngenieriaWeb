@@ -13,55 +13,41 @@
 	href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<link href="../resources/css/indexUsuario.css"
-	rel="stylesheet" type="text/css">
-		<!-- jQuery -->
-	
-	<!-- Bootstrap Core JavaScript -->
-	<script src="../Plantilla/js/bootstrap.min.js"></script>
+<link href="../resources/css/indexUsuario.css" rel="stylesheet"
+	type="text/css">
+<!-- jQuery -->
 
-	<!-- Plugin JavaScript -->
-	<script
-		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<script src="../Plantilla/js/classie.js"></script>
-	<script src="../Plantilla/js/cbpAnimatedHeader.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../Plantilla/js/bootstrap.min.js"></script>
 
-	<!-- Contact Form JavaScript -->
-	<script src="../Plantilla/js/jqBootstrapValidation.js"></script>
-	<script src="../Plantilla/js/contact_me.js"></script>
+<!-- Plugin JavaScript -->
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="../Plantilla/js/classie.js"></script>
+<script src="../Plantilla/js/cbpAnimatedHeader.js"></script>
 
-	<!-- Custom Theme JavaScript -->
-	<script src="../Plantilla/js/freelancer.js"></script>
+<!-- Contact Form JavaScript -->
+<script src="../Plantilla/js/jqBootstrapValidation.js"></script>
+<script src="../Plantilla/js/contact_me.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../Plantilla/js/freelancer.js"></script>
 
 <div>
 	<!-- Navigation -->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header page-scroll">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<span class="navbar-brand" >{{user}}<small> {{rol}}</small></span>
-<!-- 				href="#page-top" -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="navbar-brand"> Usuario: {{user}}<small> Rol: {{rol}}</small></span>
 			</div>
-
-			<!-- Collect thed nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-right">Inicio
-<!-- 					<li class="hidden"><a href="#page-top"></a></li> -->
-  				    <li class="page-scroll"><a href="#indexInvestigador">Inicio</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
+			<ul class="nav navbar-nav">
+				<li><a href="#indexInvestigador">Inicio</a></li>
+				<li><a href="#listarDispositivos">Mis Reservas</a></li>
+			</ul>
 		</div>
-		<!-- /.container-fluid -->
 	</nav>
-	<!-- Portfolio Grid Section -->
+	
+	<!-- Dispositivo Section -->
 	<section id="portfolio">
 		<div class="container">
 			<div class="row">
@@ -70,20 +56,21 @@
 					<hr class="star-primary">
 				</div>
 			</div>
-			
-<!-- 			Dispositivo -->
-			<div class="w3-card-8 w3-dark-grey" >
-				<div class="w3-container w3-center" ng-repeat="dispositivo in dispositivos">
-					<h3>Drescripcion</h3>
-					<span>{{dispositivo.descripcion}}</span>
-					<h3>Tipo</h3>
-					<span>{{dispositivo.tipo}}</span>
-					<h3>Marca</h3>
-					<span>{{dispositivo.marca}}</span>
-					<br/>
-					<button class="w3-btn w3-green">Reservar</button>
+			<!-- 			Dispositivo -->
+			<div ng-repeat="dispositivo in dispositivos">
+				<div class="w3-card-8 w3-dark-grey">
+					<div class="w3-container w3-center">
+						<h3>Drescripcion</h3>
+						<span>{{dispositivo.descripcion}}</span>
+						<h3>Tipo</h3>
+						<span>{{dispositivo.tipo}}</span>
+						<h3>Marca</h3>
+						<span>{{dispositivo.marca}}</span> <br />
+						<br/>
+						<button class="w3-btn w3-green">Reservar</button>
+					</div>
 				</div>
-
+				<br/>
 			</div>
 		</div>
 	</section>
