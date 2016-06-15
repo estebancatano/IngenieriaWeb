@@ -38,23 +38,33 @@
 					<hr class="star-primary">
 				</div>
 			</div>
-			<!-- 			Dispositivo -->
-<!-- 			<div ng-repeat="dispositivo in dispositivos"> -->
-<!-- 				<div class="w3-card-8 w3-dark-grey"> -->
-<!-- 					<div class="w3-container w3-center"> -->
-<!-- 						<h3>Drescripcion</h3> -->
-<!-- 						<span>{{dispositivo.descripcion}}</span> -->
-<!-- 						<h3>Tipo</h3> -->
-<!-- 						<span>{{dispositivo.tipo}}</span> -->
-<!-- 						<h3>Marca</h3> -->
-<!-- 						<span>{{dispositivo.marca}}</span> <br /> -->
-<!-- 						<br/> -->
-<!-- 						<button class="w3-btn w3-green" ng-click="reservar(dispositivo)" >Reservar</button> -->
+			<!-- 			Reserva-->
+			<div ng-repeat="reserva in reservas">
+				<div class="w3-card-8 w3-dark-grey">
+					<div class="w3-container w3-center">
+						<h3>Nombre del investigador</h3>
+						<span>{{reserva.investigador.nombres}} + " "+ {{reserva.investigador.apellidos}}</span>
+						<h3>Codigo de la reserva</h3>
+						<span>{{reserva.codigo}}</span>
+						<h3>Dispositivo a prestar</h3>
+						<span>{{reserva.dispositivo.codigo}} + " " + {{reserva.dispositivo.descripcion}}  </span> <br />
 						
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<br/> -->
-<!-- 			</div> -->
+						<h3>Fecha de solicitud</h3>
+						<span>{{reserva.fechaSolicitud}} </span> 
+						
+						<h3>Fecha de prestamo</h3>
+						<span>{{reserva.fechaPrestamo}} </span> 
+						
+						<h3>Cantidad de horas a prestar</h3>
+						<span>{{reserva.cantidadHoras}} </span>
+					
+						<br/>
+						<button class="w3-btn w3-green" ng-click="rechazar(reserva)" >Rechazar</button>
+						
+					</div>
+				</div>
+				<br/>
+			</div>
 		</div>
 	</section>
 </div>

@@ -29,24 +29,63 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies,
 app.controller('controllerInvestigador', function($scope, $location, $cookies) {
 	$scope.user = $cookies.nombreUsuario;
 	$scope.rol = 'Investigador';
+
+});
+
+app.controller('controllerAdministrador',
+		function($scope, $location, $cookies) {
+			$scope.user = $cookies.nombreUsuario;
+			$scope.rol = 'Administrador';
+
+		});
+
+app.controller('controllerListaReservas', function($scope, $location, $cookies,
+		Reserva) {
+	$scope.user = $cookies.nombreUsuario;
+	$scope.rol = 'Administrador';
+	Reserva.obtenerReserva().success(function(data) {
+		var lista = data.reservaDTOWS;
+		var l = lista.length;
+		var arreglo;
+		console.log(lista);
+		console.log(l);
+		console.log(typeof (lista));
+		if (lista.length > 1) {
+			arreglo = lista;
+		} else {
+			var arr = [];
+			arr.push(lista);
+			console.log(arr);
+			arreglo = arr;
+		}
+		console.log("Arreglo");
+		console.log(arreglo);
+		var listaReservas = [];
+		for(var ele = 0; ele < arreglo.length;ele++){
+			console.log(ele);
+			if(arreglo[ele].aprobado == 'SI'){
+				listaReservas.push(arreglo[ele]);
+			}
+		}
+		$scope.reservas = listaReservas;
+	});
+
 	
+	$scope.rechazar = function(reserva) {
+
+		Reserva.modificarReserva(reserva.codigo, $scope.user).success(
+				function(data) {
+
+					if (data == '') {
+						$location.url('/listaReservas');
+					} else {
+						alert(data);
+					}
+				});
+
+	}
+
 });
-
-app.controller('controllerAdministrador', function($scope, $location, $cookies) {
-	$scope.user = $cookies.nombreUsuario;
-	$scope.rol = 'Administrador';
-
-});
-
-app.controller('controllerListaReservas', function($scope, $location, $cookies) {
-	$scope.user = $cookies.nombreUsuario;
-	$scope.rol = 'Administrador';
-
-});
-
-
-
-
 
 // Controlador de listarDispositivos
 app.controller('controllerListaDispositivos', function($scope, Dispositivo,
@@ -71,11 +110,10 @@ app.controller('controllerListaDispositivos', function($scope, Dispositivo,
 	$scope.reservar = function(item) {
 		$cookies.dispositivo = item;
 		console.log(item);
-		
+
 		console.log("Hola");
 		$location.url('/solicitudReserva');
-		
-	
+
 	}
 });
 
@@ -107,8 +145,9 @@ app.controller('controllerSolicitud',
 				console.log(fecha);
 				console.log($scope.numeroHoras);
 
-				Reserva.insertarReserva($scope.dispositivo.codigo, $scope.user, fecha, $scope.numeroHoras).success(function(data) {
-				
+				Reserva.insertarReserva($scope.dispositivo.codigo, $scope.user,
+						fecha, $scope.numeroHoras).success(function(data) {
+
 					if (data == "") {
 						$location.url("/listaDispositivos");
 					} else {

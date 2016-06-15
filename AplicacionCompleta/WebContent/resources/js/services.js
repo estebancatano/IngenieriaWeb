@@ -1,7 +1,8 @@
 var URL_LOGIN = 'http://localhost:8080/SistemaPrestamos/rest/Usuario/Validar';
 var URL_DISPOSITIVO = 'http://localhost:8080/SistemaPrestamos/rest/Dispositivo/Listar';
-var URL_RESERVA = ' http://localhost:8080/SistemaPrestamos/rest/Reserva/Insertar';
-
+var URL_RESERVA = 'http://localhost:8080/SistemaPrestamos/rest/Reserva/Insertar';
+var URL_LISTA_RESERVAS = 'http://localhost:8080/SistemaPrestamos/rest/Reserva/Listar';
+var URL_MODIFICAR_RESERVA = 'http://localhost:8080/SistemaPrestamos/rest/Reserva/Actualizar';
 var app = angular.module('prestamos.service', []);
 
 app.service('Login', function($http) {
@@ -32,19 +33,40 @@ app.service('Dispositivo', function($http) {
 });
 
 app.service('Reserva', function($http) {
-	this.insertarReserva= function(cod, inves, fecha, hora) {
-		
+	this.insertarReserva = function(cod, inves, fecha, hora) {
+
 		return $http({
 			method : 'POST',
 			url : URL_RESERVA,
 			params : {
-				dispositivo: cod,
-				investigador: inves,
-				fechaPrestamo: fecha,
-				numeroHoras: hora
+				dispositivo : cod,
+				investigador : inves,
+				fechaPrestamo : fecha,
+				numeroHoras : hora
 			}
-		
+
 		});
+	}
+
+	this.obtenerReserva = function() {
+		return $http({
+			method : 'GET',
+			url : URL_LISTA_RESERVAS
+		});
+
+	}
+
+	this.modificarReserva = function(cod, admin) {
+		return $http({
+			method : 'PUT',
+			url : URL_MODIFICAR_RESERVA,
+			params : {
+				codigo : cod,
+				administrador : admin,
+				estado : "NO"
+			}
+		});
+
 	}
 });
 
