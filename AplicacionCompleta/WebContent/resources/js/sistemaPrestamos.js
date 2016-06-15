@@ -38,7 +38,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	// Ruta para: Listar reservas
 	$routeProvider.when('/listaReservas', {
 		templateUrl : 'administrador/listarReservas.html',
-		controller : 'controllerAdministrador'
+		controller : 'controllerListaReservas'
 	});
 
 } ]);

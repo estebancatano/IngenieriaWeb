@@ -29,11 +29,25 @@ app.controller('controllerLogin', function($scope, Login, $location, $cookies,
 app.controller('controllerInvestigador', function($scope, $location, $cookies) {
 	$scope.user = $cookies.nombreUsuario;
 	$scope.rol = 'Investigador';
-	$scope.mostrarDispositivos = function() {
-		$location.url('/listaDispositivos');
-	};
+	
+});
+
+app.controller('controllerAdministrador', function($scope, $location, $cookies) {
+	$scope.user = $cookies.nombreUsuario;
+	$scope.rol = 'Administrador';
 
 });
+
+app.controller('controllerListaReservas', function($scope, $location, $cookies) {
+	$scope.user = $cookies.nombreUsuario;
+	$scope.rol = 'Administrador';
+
+});
+
+
+
+
+
 // Controlador de listarDispositivos
 app.controller('controllerListaDispositivos', function($scope, Dispositivo,
 		$location, $cookies, Factory) {
@@ -54,17 +68,22 @@ app.controller('controllerListaDispositivos', function($scope, Dispositivo,
 			$scope.dispositivos = arr;
 		}
 	});
-	$scope.reservar = function() {
+	$scope.reservar = function(item) {
+		$cookies.dispositivo = item;
+		console.log(item);
+		
+		console.log("Hola");
 		$location.url('/solicitudReserva');
-		console.log($scope.dispositivo);
+		
+	
 	}
 });
 
 app.controller('controllerSolicitud',
-		function($cookies, $location, $scope) {
+		function($cookies, $location, $scope, Reserva) {
 			$scope.user = $cookies.nombreUsuario;
 			$scope.rol = 'Investigador';
-			console.log($scope.dispositivo);
+			$scope.dispositivo = $cookies.dispositivo;
 
 			$scope.aceptar = function() {
 
@@ -88,6 +107,14 @@ app.controller('controllerSolicitud',
 				console.log(fecha);
 				console.log($scope.numeroHoras);
 
+				Reserva.insertarReserva($scope.dispositivo.codigo, $scope.user, fecha, $scope.numeroHoras).success(function(data) {
+				
+					if (data == "") {
+						$location.url("/listaDispositivos");
+					} else {
+						alert(data);
+					}
+				});
 			};
 
 		});

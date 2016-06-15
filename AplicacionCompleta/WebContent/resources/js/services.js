@@ -1,5 +1,6 @@
 var URL_LOGIN = 'http://localhost:8080/SistemaPrestamos/rest/Usuario/Validar';
 var URL_DISPOSITIVO = 'http://localhost:8080/SistemaPrestamos/rest/Dispositivo/Listar';
+var URL_RESERVA = ' http://localhost:8080/SistemaPrestamos/rest/Reserva/Insertar';
 
 var app = angular.module('prestamos.service', []);
 
@@ -26,6 +27,23 @@ app.service('Dispositivo', function($http) {
 		return $http({
 			method : 'GET',
 			url : URL_DISPOSITIVO
+		});
+	}
+});
+
+app.service('Reserva', function($http) {
+	this.insertarReserva= function(cod, inves, fecha, hora) {
+		
+		return $http({
+			method : 'POST',
+			url : URL_RESERVA,
+			params : {
+				dispositivo: cod,
+				investigador: inves,
+				fechaPrestamo: fecha,
+				numeroHoras: hora
+			}
+		
 		});
 	}
 });
