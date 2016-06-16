@@ -1,0 +1,81 @@
+<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+<link href="../Plantilla/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="../Plantilla/css/freelancer.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="../Plantilla/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link
+	href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link href="../resources/css/indexUsuario.css" rel="stylesheet"
+	type="text/css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/solicitud.css">
+
+<div>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<span class="navbar-brand"> Usuario: {{user}}<small>
+						Rol: {{rol}}</small></span>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="#indexInvestigador">Inicio</a></li>
+				<li><a href="#listarDispositivos">Mis Reservas</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- Dispositivo Section -->
+	<section id="portfolio">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2>Solicitud de reserva</h2>
+					<hr class="star-primary">
+				</div>
+			</div>
+			<!-- 			Dispositivo -->
+
+			<div class="w3-card-8 w3-dark-grey">
+				<div class="w3-container w3-center">
+					<h3>Codigo de dispositivo</h3>
+					<span>{{dispositivo.codigo}}</span>
+
+					<h3>Descripcion</h3>
+					<span>{{dispositivo.descripcion}}</span>
+
+					<h3>Tipo</h3>
+					<span>{{dispositivo.tipo}}</span>
+
+					<h3>Marca</h3>
+					<span>{{dispositivo.marca}}</span>
+
+					<h3>Estado del dispositivo</h3>
+					<span>{{dispositivo.estado}}</span>
+
+					<h3>Observacion</h3>
+					<span>{{dispositivo.observacion}}</span> <br /> <br />
+
+					<h3>Ingrese la fecha de prestamo</h3>
+
+					<input id="aaa" type="datetime-local" ng-model="fechaPrestamo">
+					<br /> <br />
+
+					<h3>Ingrese cantidad de horas a prestar</h3>
+					<input id="bbb" type="number" ng-model="numeroHoras" min="1"
+						max="8"> <br />
+					<button class="w3-btn w3-green" ng-click="aceptar()">Reservar</button>
+					<br />
+				</div>
+			</div>
+
+		</div>
+	</section>
+</div>

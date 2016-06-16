@@ -2,9 +2,17 @@ package co.edu.udea.iw.service;
 
 import java.util.Date;
 
+<<<<<<< HEAD
 import co.edu.udea.iw.dao.PrestamoDAO;
 import co.edu.udea.iw.dao.ReservaDAO;
 import co.edu.udea.iw.dao.UsuarioDAO;
+=======
+import co.edu.udea.iw.dao.DispositivoDAO;
+import co.edu.udea.iw.dao.PrestamoDAO;
+import co.edu.udea.iw.dao.ReservaDAO;
+import co.edu.udea.iw.dao.UsuarioDAO;
+import co.edu.udea.iw.dto.Dispositivo;
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 import co.edu.udea.iw.dto.Prestamo;
 import co.edu.udea.iw.dto.Reserva;
 import co.edu.udea.iw.dto.Usuario;
@@ -17,8 +25,30 @@ public class PrestamoService {
 	PrestamoDAO prestamoDao;
 	ReservaDAO reservaDao;
 	UsuarioDAO usuarioDao;
+<<<<<<< HEAD
 	ReservaService reservaService;
 	UsuarioService usuarioService;
+=======
+	DispositivoDAO dispositivoDao;
+	ReservaService reservaService;
+	UsuarioService usuarioService;
+	
+	
+
+	/**
+	 * @return the dispositivoDao
+	 */
+	public DispositivoDAO getDispositivoDao() {
+		return dispositivoDao;
+	}
+
+	/**
+	 * @param dispositivoDao the dispositivoDao to set
+	 */
+	public void setDispositivoDao(DispositivoDAO dispositivoDao) {
+		this.dispositivoDao = dispositivoDao;
+	}
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 
 	public ReservaDAO getReservaDao() {
 		return reservaDao;
@@ -72,6 +102,11 @@ public class PrestamoService {
 		/* Se obtiene la reserva de acuerdo al código ingresado por parametro */
 		reserva = reservaDao.obtener(codigoReserva);
 
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 		/* Se envia a prestamo toda la informacion de la reserva */
 		prestamo.setCodigoReserva(reserva);
 
@@ -83,15 +118,34 @@ public class PrestamoService {
 		 */
 		Usuario usuario;
 		usuario = usuarioDao.obtener(nombreUsuario);
+<<<<<<< HEAD
+=======
+		if(usuario == null){
+			throw new IWServiceException("El usuario no existe");
+		}
+		
+		if(!"ADMINISTRADOR".equals(usuario.getRol().getNombre())){
+			throw new IWServiceException("El usuario no es administrador");
+		}
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 		prestamo.setAdministradorEntrega(usuario);
 
 		prestamo.setFechaMaximaDevolucion(
 				UtilFecha.sumarRestarHorasFecha(prestamo.getFechaEntrega(), reserva.getCantidadHoras()));
 
 		prestamoDao.insertar(prestamo);
+<<<<<<< HEAD
 	}
 
 	public void devolucion(Long codigoPrestamo, String nombreUsuario) throws IWDaoException, IWServiceException {
+=======
+		Dispositivo dispositivo = reserva.getDispositivo();
+		dispositivo.setEstado("PRESTAMO");
+		dispositivoDao.modificar(dispositivo);
+	}
+
+	public void devolver(Long codigoPrestamo, String nombreUsuario) throws IWDaoException, IWServiceException {
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 
 		/* Se realiza las validaciones pertinentes */
 		if (codigoPrestamo == null) {
@@ -121,10 +175,43 @@ public class PrestamoService {
 		Usuario usuario;
 		usuario = usuarioDao.obtener(nombreUsuario);
 		prestamo.setAdministradorDevolucion(usuario);
+<<<<<<< HEAD
+=======
+		if(usuario == null){
+			throw new IWServiceException("El usuario no existe");
+		}
+		
+		if(!"ADMINISTRADOR".equals(usuario.getRol().getNombre())){
+			throw new IWServiceException("El usuario no es administrador");
+		}
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 		
 		/*Se agrega la fecha en la que devuelve el dispositivo*/
 		prestamo.setFechaDevolucion(new Date());
 		
+<<<<<<< HEAD
 	}
+=======
+		usuarioService.sancionar();
+		
+		prestamoDao.modificar(prestamo);
+	}
+
+	/**
+	 * @return the usuarioService
+	 */
+	public UsuarioService getUsuarioService() {
+		return usuarioService;
+	}
+
+	/**
+	 * @param usuarioService the usuarioService to set
+	 */
+	public void setUsuarioService(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
+	
+	
+>>>>>>> 51211fefad9adfc0a32be134b3c9595b803c2457
 
 }

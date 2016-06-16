@@ -22,10 +22,10 @@ public class Rol implements Serializable{
 	
 
 
-	public String getNombres() {
+	public String getNombre() {
 		return nombre;
 	}
-	public void setNombres(String nombre) {
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	public Integer getcodigo() {

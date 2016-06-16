@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import co.edu.udea.iw.dao.DispositivoDAO;
+import co.edu.udea.iw.dao.UsuarioDAO;
 import co.edu.udea.iw.dao.impl.DispositivoDAOImpl;
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.udea.iw.dto.Dispositivo;
+import co.edu.udea.iw.dto.Usuario;
 import co.edu.udea.iw.exception.IWDaoException;
 import co.edu.udea.iw.exception.IWServiceException;
 import co.edu.udea.iw.util.validations.Validaciones;
@@ -25,6 +27,22 @@ public class DispositivoService {
 	
 	/*Se crea una instacia de DispositivoDao para realizar cada una de las transaciones */
 	private DispositivoDAO dispositivoDao;
+	private UsuarioDAO usuarioDao;
+	
+
+	/**
+	 * @return the usuarioDAO
+	 */
+	public UsuarioDAO getUsuarioDao() {
+		return usuarioDao;
+	}
+
+	/**
+	 * @param usuarioDAO the usuarioDAO to set
+	 */
+	public void setUsuarioDao(UsuarioDAO usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
 
 	public DispositivoDAO getDispositivoDao() {
 		return dispositivoDao;
@@ -58,15 +76,15 @@ public class DispositivoService {
 			throw new IWServiceException("El código ingresado no debe ser una cadena vacía");
 		}
 
-		if (Validaciones.isTextoVacio(descripcion)) {
+		/*if (Validaciones.isTextoVacio(descripcion)) {
 			descripcion = "";
-		}
+		}*/
 
 		if (Validaciones.isTextoVacio(tipo)) {
 			throw new IWServiceException("El tipo de dispositivo no puede ser nulo, ni una cadena de carácteres vacía");
 		}
 
-		if (Validaciones.isTextoVacio(marca)) {
+		/*if (Validaciones.isTextoVacio(marca)) {
 			marca = "";
 		}
 		if (Validaciones.isTextoVacio(valor)) {
@@ -77,7 +95,16 @@ public class DispositivoService {
 		}
 		if (Validaciones.isTextoVacio(observacion)) {
 			observacion = "";
+		}*/
+		
+		
+		/*Se verifica que el código del dispositivo no exista*/
+		Dispositivo existe;
+		existe = dispositivoDao.obtener(codigo);
+		if (existe != null) {
+			throw new IWDaoException("El código: " + codigo + " del dispositivo ingresado ya existe en el sistema");
 		}
+		
 		/*Se crea un objeto dispositivo*/
 		Dispositivo dispositivo = new Dispositivo();
 
@@ -94,12 +121,7 @@ public class DispositivoService {
 		dispositivo.setAdministradorElimina(null);
 		dispositivo.setEliminado("NO");
 		
-		/*Se verifica que el código del dispositivo no exista*/
-		Dispositivo existe;
-		existe = dispositivoDao.obtener(codigo);
-		if (existe != null) {
-			throw new IWDaoException("El código: " + codigo + " del dispositivo ingresado ya existe en el sistema");
-		}
+		
 		/*Se inserta el dispositivo en la BD*/
 		dispositivoDao.insertar(dispositivo);
 	}
@@ -158,12 +180,13 @@ public class DispositivoService {
 	
 	/**
 	 * Método que cambia el campo "eliminado" a "SI" de un dispositivo, con el propósito
-	 *  de que no sea borrado lógicamente del sistema.
+	 *  de que no sea borrado f�sicamente del sistema.
 	 * @param codigo del dispositivo a eliminar.
 	 * @param administradorElimina es el nombre del administrador que realiza la eliminación.
 	 * @throws IWDaoException
+	 * @throws IWServiceException 
 	 */
-	public void eliminar(Long codigo, String administradorElimina) throws IWDaoException {
+	public void eliminar(Long codigo, String administradorElimina) throws IWDaoException, IWServiceException {
 		
 		/*Declaro un objeto dispositivo*/
 		Dispositivo dispositivo;
@@ -171,8 +194,18 @@ public class DispositivoService {
 		/*Obtengo el dispositivo a eliminar*/
 		dispositivo = dispositivoDao.obtener(codigo);
 		
+		Usuario usuario = usuarioDao.obtener(administradorElimina);
+		
+		if(usuario == null){
+			throw new IWServiceException("El usuario no existe");
+		}
+		
+		if(!"ADMINISTRADOR".equals(usuario.getRol().getNombre())){
+			throw new IWServiceException("El usuario no es administrador");
+		}
+		
 		/*Lleno los campos pertinentes a la eliminación*/
-		dispositivo.setAdministradorElimina(administradorElimina);
+		dispositivo.setAdministradorElimina(usuario);
 		dispositivo.setEliminado("SI");
 		dispositivo.setFechaEliminacion(new Date());
 		

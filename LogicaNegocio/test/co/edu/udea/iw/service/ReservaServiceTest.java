@@ -44,13 +44,4 @@ public class ReservaServiceTest {
 			fail(e.getMessage());
 		}
 	}
-
-	/**
-	 * Test method for {@link co.edu.udea.iw.service.ReservaService#actualizarReserva(java.lang.Long, java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testActualizarReserva() {
-		fail("Not yet implemented");
-	}
-
 }

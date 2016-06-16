@@ -70,20 +70,22 @@ public class ReservaService {
 		if(dispositivo == null){
 			throw new IWServiceException("El dispositivo que desea prestar no existe");
 		}
-		if(!"Disponible".equals(dispositivo.getEstado())){
-			throw new IWServiceException("El dispositivo no se encuentra disponible");
-		}
 		if("SI".equals(dispositivo.getEliminado())){
 			throw new IWServiceException("El dispositvo se encuentra dado de baja");
 		}
+		
+		if(!"DISPONIBLE".equals(dispositivo.getEstado())){
+			throw new IWServiceException("El dispositivo no se encuentra disponible");
+		}
+		
 		Usuario usuario = usuarioDao.obtener(usuarioInvestigador);
 		if(usuario == null){
 			throw new IWServiceException("El nombre de usuario no existe");
 		}
-		if("Investigador".equals(usuario.getRol().getNombres())){
+		if(!"INVESTIGADOR".equals(usuario.getRol().getNombre())){
 			throw new IWServiceException("El usuario no posee el rol de investigador");
 		}
-		if(usuario.getFechaSancion().after(fechaPrestamo)){
+		if(usuario.getFechaSancion() != null){
 			throw new IWServiceException("El usuario se encuentra sancionado");
 		}
 		if (!this.verificarReservasUsuarios(usuario)) {
@@ -127,7 +129,7 @@ public class ReservaService {
 		if(usuario == null){
 			throw new IWServiceException("El usuario no existe");
 		}
-		if("Administrador".equals(usuario.getRol().getNombres())){
+		if("ADMINISTRADOR".equals(usuario.getRol().getNombre())){
 			throw new IWServiceException("El usuario no posee el rol de administrador");
 		}
 		reserva = reservaDao.obtener(codigoReserva);
@@ -139,6 +141,22 @@ public class ReservaService {
 		reservaDao.modificar(reserva);
 	}
 
+	/**
+	 * Lista todas la reservas de un usuario
+	 * @param usuario Nombre de usuario del investigador
+	 * @return Lista de Reservas del usuario indicado
+	 * @throws IWDaoException Manejador de excepciones personalizado
+	 */
+	public List<Reserva> listarReservas(String usuario) throws IWDaoException {
+		/*Se crea la lista que será retornada*/
+		List<Reserva> lista = null;
+		
+		/*Se llena la lista con los dispositivos que no estén eliminados*/
+		lista = reservaDao.obtener("investigador", usuario);
+		
+		return lista;
+	}
+	
 	/**
 	 * Verifica que la reserva no se solape con otras reserva al mismo dispositivo
 	 * @param dispositivo Dispositivo a reservar

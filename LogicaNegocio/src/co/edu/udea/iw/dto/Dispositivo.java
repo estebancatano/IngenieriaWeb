@@ -11,7 +11,7 @@ public class Dispositivo {
 	private Date fechaAdquisicion;
 	private String eliminado;
 	private Date fechaEliminacion;
-	private String administradorElimina;
+	private Usuario administradorElimina;
 	private String estado;
 	private String observacion;
 	
@@ -79,11 +79,11 @@ public class Dispositivo {
 		this.fechaEliminacion = fechaEliminacion;
 	}
 
-	public String getAdministradorElimina() {
+	public Usuario getAdministradorElimina() {
 		return administradorElimina;
 	}
 
-	public void setAdministradorElimina(String administradorElimina) {
+	public void setAdministradorElimina(Usuario administradorElimina) {
 		this.administradorElimina = administradorElimina;
 	}
 		public String getEstado() {

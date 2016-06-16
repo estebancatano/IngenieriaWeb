@@ -1,0 +1,31 @@
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+<!-- <script type="text/javascript" src="../resources/js/login.js"></script> -->
+<link rel="stylesheet" type="text/css" href="../resources/css/login.css">
+<div class="container">
+
+	<div class="card card-container">
+
+		<img id="profile-img" class="profile-img-card"
+			src="../resources/img/logoUdeA.png" />
+		<p id="profile-name" class="profile-name-card"></p>
+
+		<h1 class="titulo">Neurociencias</h1>
+		<h3 class= "titulo">Prestamo de dispositivos</h3>
+
+		<form class="form-signin">
+			<input type="text" id="inputEmail" class="form-control"
+				placeholder="Username" required autofocus ng-model="user">
+
+			<input type="password" id="inputPassword" class="form-control"
+				placeholder="Password" ng-model="password" required>
+			<button class="btn btn-lg btn-primary btn-block btn-signin"
+				type="submit" ng-click="login()">Sign in</button>
+		</form>
+
+	</div>
+	<!-- /card-container -->
+</div>
+<!-- /container -->

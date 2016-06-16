@@ -1,0 +1,10 @@
+co.edu.udea.iw.dao
+co.edu.udea.iw.dao.impl
+co.edu.udea.iw.dto
+co.edu.udea.iw.exception
+co.edu.udea.iw.service
+co.edu.udea.iw.util.dates
+co.edu.udea.iw.util.encode
+co.edu.udea.iw.util.validations
+co.edu.udea.iw.webservices
+co.edu.udea.iw.webservices.dto
